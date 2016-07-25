@@ -1,8 +1,56 @@
-<html ng-app>
+<!DOCTYPE html>
+<html>	
 <head>
-  <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js'></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<!-- Imported CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css"></link>
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css"></link>
+	<!-- handmade css -->
+	<link rel="stylesheet" type="text/css" href="css/styles.css"></link>	
+	<!-- Bootstrap -->
 </head>
-<body>
-  {{"hello"+" world"}}
+
+<body ng-app="TexasFyre" ng-controller="MainController">
+	<div id='cssmenu'>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<!--<a class="logo" href="#"><img alt="Brand" src="images/navbar-logo.png" style="width: 50px"></a>-->
+		        <button type="button" class="navbar-toggle" ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+		          <span class="sr-only">Toggle navigation</span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		          <span class="icon-bar"></span>
+		        </button>
+			</div>
+			<div class="navbar-collapse" ng-class="{collapse: isCollapsed}">
+				<ul class="nav navbar-nav">
+				   <li ng-class="{ active: isActive('/home')}" ng-click="collapseMenu()"><a href='#/home'><span>Home</span></a></li>
+				   <li ng-class="{ active: isActive('/about')}" ng-click="collapseMenu()"><a href='#/about'><span>About</span></a></li>
+				   <li ng-class="{ active: isActive('/events')}" ng-click="collapseMenu()"><a href='#/events'><span>Events</span></a></li>
+				   <li ng-class="{ active: isActive('/contact')}" ng-click="collapseMenu()"><a href='#/contact'><span >Contact</span></a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>		
+	<div class="content" ng-view padding-top:65px>
+	</div>
+	<div class="footer navbar-fixed-bottom">
+  	</div>
+
+  <!-- angular.js-->
+	<script type="text/javascript" src="scripts/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/angular.min.js.map"></script>
+	<script type="text/javascript" src="scripts/angular-route.min.js"></script>	
+	<script type="text/javascript" src="scripts/ui-bootstrap.min.js"></script>
+	<script type="text/javascript" src="scripts/jquery-1.8.2.js"></script>	
+
+	<!-- Angular /scripts and /controllers-->
+	<script type="text/javascript" charset="utf8" src="scripts/app.js"></script>
+	<script type="text/javascript" charset="utf8" src="controllers/mainctrl.js"></script>
+	<script type="text/javascript" charset="utf8" src="controllers/homectrl.js"></script>
+	<script type="text/javascript" charset="utf8" src="controllers/aboutctrl.js"></script>
+	<script type="text/javascript" charset="utf8" src="controllers/eventsctrl.js"></script>
+	<script type="text/javascript" charset="utf8" src="controllers/contactctrl.js"></script>
 </body>
 </html>
