@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,21 +52,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'myproject.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(os.path.dirname(__file__), '..//', 'templates').replace('\\', '/')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, "static", "templates"),
+)
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
@@ -103,5 +91,6 @@ STATIC_ROOT = '/home1/texasfyr/public_html/static_files'
 STATIC_URL = '/static_files/'
 
 STATICFILES_DIRS = (
-	'/home1/texasfyr/public_html/myproject/myproject/static/myproject',
+    '/home1/texasfyr/public_html/myproject/myproject/static/static/css',
+    '/home1/texasfyr/public_html/myproject/myproject/static/static/js',
 )

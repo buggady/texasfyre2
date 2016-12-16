@@ -1,5 +1,6 @@
-from django.shortcuts import render_to_response
-from django.template.context import RequestContext
+from django.shortcuts import render
 
-def index(request):
-    return render_to_response('myproject/index.html', context_instance=RequestContext(request))
+def home(request):
+    return render(request, 'home.html')
+
+
