@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    {% load staticfiles %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Responsive Metatag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   
+    <!-- Page Description and Author -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Texas Fyre</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'texasfyre/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'texasfyre/css/jumbotron.css' %}" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="{% static 'texasfyre/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+    <script src="{% static 'texasfyre/js/ie-emulation-modes-warning.js' %}"></script>
+
+    <!-- Custom CSS styles -->
+    <link href="{% static 'texasfyre/css/styles.css' %}" rel="stylesheet">
+    <!-- CSS for additional features -->
+   <!-- <link href="{% static 'responsive.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'texasfyre/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'texasfyre/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'texasfyre/css/slicknav.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+  <!-- Start Top Bar -->
+      <div class="top-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7">
+              <!-- Start Contact Info -->
+              <ul class="contact-details">
+                <li><a href="#"><i class="fa fa-map-marker"></i> Plano, TX</a>
+                </li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> accounts@texasfyre.com</a>
+                </li>
+                <li><a href="#"><i class="fa fa-phone"></i> 817-946-1283</a>
+                </li>
+              </ul>
+              <!-- End Contact Info -->
+            </div>
+            <!-- .col-md-6 -->
+            <div class="col-md-5">
+              <!-- Start Social Links -->
+              <!--<ul class="social-list">
+                <li>
+                  <a class="facebook itl-tooltip" data-placement="bottom" title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a class="twitter itl-tooltip" data-placement="bottom" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a class="google itl-tooltip" data-placement="bottom" title="Google Plus" href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a class="dribbble itl-tooltip" data-placement="bottom" title="Dribble" href="#"><i class="fa fa-dribbble"></i></a>
+                </li>
+                <li>
+                  <a class="linkdin itl-tooltip" data-placement="bottom" title="Linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a class="flickr itl-tooltip" data-placement="bottom" title="Flickr" href="#"><i class="fa fa-flickr"></i></a>
+                </li>
+                <li>
+                  <a class="tumblr itl-tooltip" data-placement="bottom" title="Tumblr" href="#"><i class="fa fa-tumblr"></i></a>
+                </li>
+                <li>
+                  <a class="instgram itl-tooltip" data-placement="bottom" title="Instagram" href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a class="vimeo itl-tooltip" data-placement="bottom" title="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a>
+                </li>
+                <li>
+                  <a class="skype itl-tooltip" data-placement="bottom" title="Skype" href="#"><i class="fa fa-skype"></i></a>
+                </li>
+              </ul> -->
+              <!-- End Social Links -->
+            </div>
+            <!-- .col-md-6 -->
+          </div>
+          <!-- .row -->
+        </div>
+        <!-- .container -->
+      </div>
+      <!-- .top-bar -->
+      <!-- End Top Bar -->
+
+
+      <!-- Start  Logo & Naviagtion  -->
+      <div class="navbar navbar-default navbar-top" role="navigation" data-spy="affix" data-offset-top="50">
+        <div class="container">
+          <div class="navbar-header">
+            <!-- Stat Toggle Nav Link For Mobiles -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <i class="fa fa-bars"></i>
+            </button>
+            <!-- End Toggle Nav Link For Mobiles -->
+            <a class="navbar-brand" href="index.html">
+              <img alt="" src="{% static 'texasfyre/images/FyrLogoSmall.png' %}">
+            </a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <!-- Start Search -->
+            <!-- <div class="search-side">
+              <a class="show-search"><i class="fa fa-search"></i></a>
+              <div class="search-form">
+                <form autocomplete="off" role="search" method="get" class="searchform" action="#">
+                  <input type="text" value="" name="s" id="s" placeholder="Search the site...">
+                </form>
+              </div>
+            </div> -->
+            <!-- End Search -->
+            <!-- Start Navigation List -->
+            <ul class="nav navbar-nav navbar-right">
+              <li {% if 'home' in request.path %}class="active"{% endif %}><a class="active" href="home.html">Home</a></li>
+              <li {% if 'about' in request.path %}class="active"{% endif %}><a href="about.html">About</a></li>
+              <li {% if 'events' in request.path %}class="active"{% endif %}><a href="events.html">Events</a></li>
+              <li {% if 'contactus' in request.path %}class="active"{% endif %}><a href="contactus.html">Contact</a></li> 
+            </ul>
+            <!-- End Navigation List -->
+          </div>
+        </div>
+
+        <!-- Mobile Menu Start -->
+        <ul class="wpb-mobile-menu">
+          <li {% if 'home' in request.path %}class="active"{% endif %}><a href="home.html">Home</a></li>
+          <li {% if 'about' in request.path %}class="active"{% endif %}><a href="about.html">About</a></li>
+          <li {% if 'events' in request.path %}class="active"{% endif %}><a href="events.html">Events</a></li>
+          <li {% if 'contactus' in request.path %}class="active"{% endif %}><a href="contact.html">Contact</a></li>
+        </ul>
+        <!-- Mobile Menu End -->
+
+      </div>
+      <!-- End Header Logo & Navigation -->
+
+    {% block content %}{% endblock %}
+     
+      <footer>
+        <p>&copy; 2016 Texas Fyre</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'texasfyre/js/script.js' %}"></script>
+    <script src="{% static 'texasfyre/js/facebook.js' %}"></script>
+    <script src="{% static 'texasfyre/js/jquery.min.js' %}"></script>
+    <script>window.jQuery || document.write('<script src="{% static 'texasfyre/js/jquery.min.js' %}"><\/script>')</script>
+    <script src="{% static 'bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'texasfyre/js/ie10-viewport-bug-workaround.js' %}"></script>
+  </body>
+</html>
