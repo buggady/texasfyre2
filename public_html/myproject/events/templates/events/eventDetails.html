@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<!-- Container -->
+  <div id="container">
+    {% with 'events/images/'|add:event.slug as image_static %}
+    <!-- Start Header -->
+    
+    <header class="clearfix" id="headerInsert"></header>
+    <!-- End Header -->
+
+    <!-- Start Page Banner -->
+    <div class="page-banner">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>{{event.title}}</h2>
+            <p>{{event.start_date|date}}</p>
+          </div>
+          <div class="col-md-6">
+            <ul class="breadcrumbs">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Events</a></li>
+              <li>{{event.title}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Banner -->
+
+    <!-- Start Content -->
+    <div id="content">
+      <div class="container">
+        <div class="project-page row">
+          <!-- Start Single Project Slider -->
+          <div class="project-media col-md-8">
+            <div class="touch-slider project-slider">
+            	<div class="item">
+                <a class="lightbox" title="Amazing Time at {{event.title}}" href="{% static image_static %}.jpg" data-lightbox-gallery="gallery2">
+                  <!--<div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>-->
+                  <img alt="" src="{% static image_static %}.jpg" style="width:100%;">
+                </a>
+              </div>
+              {%if is_current_user_registered %}
+           		{% for i in range %}
+              <div class="item">
+                <a class="lightbox" title="Amazing Time at {{event.title}}" href="{% static image_static %}/{{forloop.counter}}.jpg" data-lightbox-gallery="gallery2">
+                  <!--<div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>-->
+                  <img alt="" src="{% static image_static %}/{{forloop.counter}}.jpg" style="width:100%">
+                </a>
+              </div>
+              {% endfor %} 
+              {% endif %}
+            </div>
+          </div>
+          <!-- End Single Project Slider -->
+         <!-- Start Project Content -->
+          <div class="project-content col-md-4">
+            <h4><span>What's Going On</span></h4>
+            <p>{{event.description|safe|linebreaks}}</p>
+            <h4><span>Details</span></h4>
+            <ul> 
+              <p>Date: {{ event.start_date|date }}</p>
+              <li><strong>Days:</strong> So many days</li>
+              <li><strong>Location:</strong> Somewhere</li>
+              {% if not event.in_the_past %}
+              <li><strong>Total Price:</strong> ${{event.total_price}}</li>
+              <li>
+                {% if request.user.is_authenticated %}
+                  {% if not is_current_user_registered %}
+                    <a href="{% url 'rsvp_to_event' event.id %}" class="btn btn-system">Register</a>
+                  {% else %}
+                    <p>You are going to this event. Good Luck!</p>
+                  {% endif %}
+                {% endif %}
+              </li>
+              {% else %}
+               <li>
+                {% if request.user.is_authenticated %}
+                  {% if not is_current_user_registered %}
+                    <a href="{% url 'rsvp_to_event' event.id %}" class="btn btn-system">Click if you went</a>
+                  {% else %}
+                    <p>Looks like you were approved!</p>
+                  {% endif %}
+                {% endif %}
+              </li> 
+              {% endif %}
+            </ul>
+            <!--<div class="post-share">
+              <span>Share This:</span>
+              <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+              <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+              <a class="mail" href="#"><i class="fa fa-envelope"></i></a>
+            </div>-->
+          </div>
+          <!-- End Project Content -->
+          {% endwith %}
+        </div>
+      </div>
+      <!-- Start Recent Projects Carousel -->
+      {% if is_current_user_registered %}
+      <h4 class="title"><span>Guest List</span></h4>
+      <!-- Start Team Members -->
+      <div class="row">
+        {% for guest in event.guest_list %}
+        <!-- Start Member 1 -->
+        <div class="col-md-2 col-sm-6 col-xs-3">
+          <div class="team-member">
+            <!-- Memebr Photo, Name & Position -->
+            <div class="member-photo">
+              <img src="{{ guest.user.profile.profile_image_url }}" alt="User Profile Picture"/>
+              <div class="member-name">{{guest.user.first_name}} {{guest.user.last_name}}</div>
+            </div>
+            <!-- Memebr Words -->
+            <!-- <div class="member-info">
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat.</p>
+            </div> -->
+            <!-- Memebr Social Links -->
+            <!--<div class="member-socail">
+              <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+              <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
+              <a class="mail" href="#"><i class="fa fa-envelope"></i></a>
+            </div> -->
+          </div>
+        </div>
+        <!-- End Member 1 -->
+        {% endfor %}
+      </div>
+      <!-- End Team Members -->
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}  

@@ -1,0 +1,35 @@
+{% load i18n %}
+
+<div class="content">
+  <!-- Classic Heading -->
+  <h4 class="classic-title"><span>{% trans "Sign In" %}</span></h4>
+  <a href="/accounts/facebook/login/"><div class="fb"></div></a>
+  <br><h4>Or Sign In Directly...</h4><br>
+  <form class="login shake" id="loginForm" role="form" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="form-group">
+      <div class="controls">
+        <input id="id_login" class="login-input" maxlength="30" name="login" placeholder="Username" type="text" />{{ form.login.errors }}
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="controls">
+        <input id="id_password"  class="login-input" name="password" placeholder="Password" type="password" />{{ form.password.errors }}
+      </div>
+    </div>
+    <div class="remember-forgot-section">
+        <input id="id_remember" name="remember" type="checkbox" />
+        <label for="id_remember">Remember Me</label>
+        <a class="forgot" style="float:right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+    </div>
+    {% if redirect_field_value %}
+    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <button class="btn-system btn-large" type="submit">{% trans "Sign In" %}</button>
+  </form>
+  <br>
+  <p>Don't have an account? <a href="{{ signup_url }}">Sign up</a> now!</p>
+</div>
+

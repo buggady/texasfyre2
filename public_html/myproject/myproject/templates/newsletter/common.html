@@ -1,0 +1,12 @@
+{% extends "base.html" %}   
+{% load i18n %}
+{% block title %}{% trans "Newsletter detail" %}{% endblock title %}
+
+{% block content %}
+<div id="content">
+  <div class="container">
+    {% block subcontent %}
+    {% endblock subcontent %}
+   </div>
+ </div>
+{% endblock content %}

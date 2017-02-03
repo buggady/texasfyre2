@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+
+<!-- Full Body Container -->
+<div id="container">
+
+  <!-- Start Page Banner -->
+  <div class="page-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Events</h2>
+          <p>We hope they are coming up</p>
+        </div>
+        <div class="col-md-6">
+          <ul class="breadcrumbs">
+            <li><a href="#">Home</a></li>
+            <li>Events</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Page Banner -->
+    <!-- Start Content -->
+  	<div id="content">
+    	<div class="container">
+      		<div class="portfolio-page portfolio-3column">
+				<!-- Start Recent Projects Carousel -->
+        		<ul id="portfolio-list" data-animated="fadeIn">
+	    	    	{% for event in object_list %}
+	            	{% if not event.in_the_past %}
+	    	    	<li>
+	    	    		{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
+	      				<div class="crop">
+	            			<img src="{% static image_static %}" alt="" />
+	            		</div>
+	                	<div class="portfolio-item-content">
+	                		<span class="header">{{event.title}}</span>
+	                		<p class="body animated8">{{event.start_date|date}}</p>
+	                	</div>
+	                	<div class="icon-list">
+	                		<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
+	                  		<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
+	                	</div> 
+	                	{% endwith %}
+	              	</li>
+	            	{% endif %}
+	    			{% endfor %}
+    			</ul>
+          	</div>
+		    <!-- Start Recent Projects Carousel -->
+		    <div class="recent-projects" style="padding-top:100px">
+		      	<h4 class="title"><span>Our Past Events</span></h4>
+		      	<div class="portfolio-page portfolio-4column">
+			      	<ul id="portfolio-list" data-animated="fadeIn">
+				      	{% for event in object_list %}
+				      	{% if event.in_the_past %}
+				      	<li>
+					      	<div class="portfolio-item item" style="margin-bottom:0px">
+						        <div class="portfolio-border">
+						            <div class="portfolio-thumb" style="height:200px">
+						               	{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
+						              	<a href="{% url 'eventdetails' event.slug %}">
+						              	<!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
+						                <!--<div class="thumb-overlay"><i class="fa fa-play"></i></div>-->
+						                	<img src="{% static image_static %}" alt="" />
+						              	</a>
+						              	{% endwith %}
+						            </div>
+						            <div class="portfolio-details">
+						                <a href="{% url 'eventdetails' event.slug %}">
+						                	<h4>{{event.title}}</h4>
+						                	<span>{{event.start_date|date}}</span>
+						                </a>
+						            </div>
+						        </div>
+						    </div>
+						    <div class="portfolio-item-content">
+	                			<span class="header">{{event.title}}</span>
+	                			<p class="body animated8">{{event.start_date|date}}</p>
+	                		</div>
+	                		<div class="icon-list">
+	                			<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
+	                  			<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
+	                		</div>
+						</li>
+				    	{% endif %}
+				    	{% endfor %}
+			    	</ul>
+		    	</div>
+		    </div>
+		</div>
+	</div>
+</div>
+<!-- End Content -->
+
+{% endblock %}	
