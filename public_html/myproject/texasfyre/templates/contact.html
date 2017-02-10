@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-
-{% block content %}
-
+{% load i18n %}
 {% load staticfiles %}
+{% block title %}{% trans "Contact Us" %}{% endblock title %}
+{% block content %}
 
 <!-- Start Map -->
 <!--<div id="google-map">
@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-8">
         <!-- Classic Heading -->
-        <h4 class="classic-title"><span>Contact Us If You</span></h4>
+        <h4 class="classic-title"><span>Contact Us If You Must</span></h4>
 
         <!-- Start Contact Form -->
         <form role="form" method="POST" id="contactForm" data-toggle="validator" class="ContactForm shake" action="{% url 'contact' %}">

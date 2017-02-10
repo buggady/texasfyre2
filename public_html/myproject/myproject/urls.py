@@ -7,6 +7,8 @@ urlpatterns = [
 	url(r'^', include('texasfyre.urls')),
 	url(r'^events/', include('events.urls')),
 	url(r'^user/', include('users.urls')),
+	url(r'^mingle/', include('mingle.urls')),
+	url(r'^market/', include('market.urls')),
 	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^payments/', include('djstripe.urls', namespace="djstripe")),

@@ -20,6 +20,7 @@
     
     <!-- Bootstrap core CSS -->
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"  type="text/css" media="screen">
+    <link href="{% static 'css/bootstrap-social.css' %}" rel="stylesheet"  type="text/css" media="screen">
     <link href="{% static 'css/settings.css' %}" rel="stylesheet"  type="text/css" media="screen">
     
 
@@ -104,7 +105,7 @@
               <!-- .col-md-6 -->
               <div class="col-md-6">
                 <!-- Start Social Links -->
-                <ul class="social-list">
+                <!-- <ul class="social-list">
                   <li>
                     <a class="facebook itl-tooltip" data-placement="bottom" title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
                   </li>
@@ -137,7 +138,7 @@
                   </li>
                   <li>
                   </li>
-                </ul>
+                </ul> -->
                 <!-- End Social Links -->
               </div>
               <div class="col-md-1">
@@ -145,7 +146,7 @@
                   {% if request.user.is_authenticated %}
                     <a href="/accounts/logout/">Logout</a>
                   {% else %}
-                    <a id="login" class="btn btn-system" style="color:white">Login</a>
+                    <a id="login" class="btn btn-system" style="color:white">Sign In</a>
                   {% endif %}
                 </div>
               </div>
@@ -176,8 +177,10 @@
               <!-- Start Navigation List -->
               <ul class="nav navbar-nav navbar-right">
                 <li><a {% if 'home' in request.path %}class="active"{% endif %} href="{% url 'home' %}">Home</a></li>
+                <li><a {% if 'market' in request.path %}class="active"{% endif %} href="{% url 'market' %}">Market</a></li>
                 {% if request.user.is_authenticated %}
                 <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
+                <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
                 <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
                 {% endif %}
                 <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
@@ -190,8 +193,10 @@
           <!-- Mobile Menu Start -->
           <ul class="wpb-mobile-menu">
             <li><a {% if 'home' in request.path %}class="active"{% endif %} href="{% url 'home' %}">Home</a></li>
+            <li><a {% if 'market' in request.path %}class="active"{% endif %} href="{% url 'market' %}">Market</a></li>
             {% if request.user.is_authenticated %}
             <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
+            <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
             <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
             {% endif %}
             <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
@@ -222,7 +227,7 @@
                 <p>Join our mailing list to stay up to date and get notices about our random stuff!</p><br> 
                 <a id="subscribe" class="btn btn-medium btn-system">Subscribe</a>
               </div>
-              <div class="footer-widget social-widget">
+              <!-- <div class="footer-widget social-widget">
                 <h4>Follow Us<span class="head-line"></span></h4>
                 <ul class="social-icons">
                   <li>
@@ -256,8 +261,8 @@
                     <a class="skype" href="#"><i class="fa fa-skype"></i></a>
                   </li>
                 </ul>
-              </div>
-            </div>
+              </div> -->
+            </div> 
             <!-- .col-md-3 -->
             <!-- End Subscribe & Social Links Widget -->
 
@@ -316,6 +321,107 @@
         <div class="dot2"></div>
       </div>
     </div>
+
+    <!-- Style Switcher -->
+  <div class="switcher-box">
+    <a class="open-switcher show-switcher"><i class="fa fa-cog fa-2x"></i></a>
+    <h4>Style Switcher</h4>
+    <span>12 Predefined Color Skins</span>
+    <ul class="colors-list">
+      <li>
+        <a href="javascript:chooseStyle('blue', 60)" title="Blue" class="blue"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('sky-blue', 60)" title="Sky Blue" class="sky-blue"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('cyan', 60)" title="Cyan" class="cyan"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('jade', 60)" title="Jade" class="jade"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('green', 60)" title="Green" class="green"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('purple', 60)" title="Purple" class="purple"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('pink', 60)" title="Pink" class="pink"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('none', 60)" title="Red" class="red"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('orange', 60)" title="Orange" class="orange"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('yellow', 60)" title="Yellow" class="yellow"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('peach', 60)" title="Peach" class="peach"></a>
+      </li>
+      <li>
+        <a href="javascript:chooseStyle('beige', 60)" title="Biege" class="beige"></a>
+      </li>
+    </ul>
+    <span>Top Bar Color</span>
+    <select id="topbar-style" class="topbar-style">
+      <option value="1">Light (Default)</option>
+      <option value="2">Dark</option>
+      <option value="3">Color</option>
+    </select>
+    <span>Layout Style</span>
+    <select id="layout-style" class="layout-style">
+      <option value="1">Wide</option>
+      <option value="2">Boxed</option>
+    </select>
+    <span>Patterns for Boxed Version</span>
+    <ul class="bg-list">
+      <li>
+        <a href="#" class="bg1"></a>
+      </li>
+      <li>
+        <a href="#" class="bg2"></a>
+      </li>
+      <li>
+        <a href="#" class="bg3"></a>
+      </li>
+      <li>
+        <a href="#" class="bg4"></a>
+      </li>
+      <li>
+        <a href="#" class="bg5"></a>
+      </li>
+      <li>
+        <a href="#" class="bg6"></a>
+      </li>
+      <li>
+        <a href="#" class="bg7"></a>
+      </li>
+      <li>
+        <a href="#" class="bg8"></a>
+      </li>
+      <li>
+        <a href="#" class="bg9"></a>
+      </li>
+      <li>
+        <a href="#" class="bg10"></a>
+      </li>
+      <li>
+        <a href="#" class="bg11"></a>
+      </li>
+      <li>
+        <a href="#" class="bg12"></a>
+      </li>
+      <li>
+        <a href="#" class="bg13"></a>
+      </li>
+      <li>
+        <a href="#" class="bg14"></a>
+      </li>
+    </ul>
+  </div>
 
    <div class="modal fade" id="form-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="padding-top:100px">
       <div class="modal-dialog">

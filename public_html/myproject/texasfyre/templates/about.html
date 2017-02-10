@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "About Us" %}{% endblock title %}
 {% block content %}
 
-{% load static %}
-  
 <header class="clearfix" id="headerInsert"></header>
 <!-- End Header -->
 
@@ -47,52 +47,6 @@
       <!-- End Touch Slider -->
     </div>
   </div>
-
-  <!-- Divider -->
-  <div class="hr1" style="margin-bottom:50px;"></div>
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Classic Heading -->
-      <h4 class="classic-title"><span>Our Home towns</span></h4>
-      <div class="skill-shortcode">
-        <div class="skill">
-          <p>Dallas, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="90">
-              <span class="progress-bar-span">20</span>
-              <span class="sr-only">90% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>Austin, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="100">
-              <span class="progress-bar-span">25</span>
-              <span class="sr-only">100% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>San Marcos, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="70">
-              <span class="progress-bar-span">10</span>
-              <span class="sr-only">70% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>Houston, TX  </p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="20">
-              <span class="progress-bar-span">5</span>
-              <span class="sr-only">20% Complete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="col-md-6">
       <!-- Classic Heading -->

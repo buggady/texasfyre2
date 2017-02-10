@@ -4,6 +4,7 @@ from users import views
 
 urlpatterns = [
 	url(r'^$', views.UserEventsListView.as_view(), name='userprofile'),
+	url(r'^edit-profile', views.edit_profile, name='edit_profile'),
 	url(r'^(?P<pk>\d+)$', views.UserEventsDetailsView.as_view(), name='user_event_details'),
 	url(r'^(?P<pk>\d+)/submit-payment$', views.pay_for_event, name='pay_for_event'),
 ]

@@ -9,6 +9,7 @@ class Event(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     total_price = models.IntegerField()
+    host = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = AutoSlugField(populate_from='title', editable=True)
 
     @property

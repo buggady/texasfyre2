@@ -7,6 +7,7 @@ import hashlib
 
 class UserProfile(models.Model):
 	user = models.OneToOneField(User, related_name='profile')
+	home_town = models.CharField(max_length=140, default='unknown')
  
 	def __unicode__(self):
 		return "{}'s profile".format(self.user.username)

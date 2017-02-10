@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'texasfyre',
     'events',
     'users',
+    'mingle',
+    'market',
     'mathfilters',
     'crispy_forms',
     'django.contrib.admin',
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
     'djstripe',
     'newsletter',
     'django.contrib.contenttypes',
@@ -83,7 +86,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -131,16 +133,16 @@ LOGIN_REDIRECT_URL='/home/'
 
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'box1156.bluehost.com'
-EMAIL_HOST_USER = 'info@texasfyre.com'
-EMAIL_HOST_PASSWORD = 'TestEmail1!'
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465
 
 NEWSLETTER_CONFIRM_EMAIL = False
 
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY", "pk_test_nKFPGu0Mt3ohbmSQ5P12ONBu")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "sk_test_jm2VVJBcYoXs8gkE0s9MbFbu")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 
-DJSTRIPE_INVOICE_FROM_EMAIL = "info@texasfyre.com"
+DJSTRIPE_INVOICE_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 DJSTRIPE_SEND_INVOICE_RECEIPT_EMAILS = False
 
 DJSTRIPE_PLANS = {
