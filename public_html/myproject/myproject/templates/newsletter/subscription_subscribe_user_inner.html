@@ -1,7 +1,7 @@
 {% load i18n %}
-
-<h1>{% trans "Newsletter subscribe" %} {{ newsletter.title }}</h1>
-
+<div class="content">
+  <!-- Classic Heading -->
+<h4 class="classic-title" style="margin-top:0px"><span>{% trans "Newsletter Subscribe" %}<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></span></h4>
 <p>Welcome, {{ user }}!</p>
 
 {% if messages %}
@@ -17,3 +17,4 @@
     <p><input id="id_submit" name="submit" value="{% trans "Subscribe" %}" type="submit" /></p>
 </form>
 {% endif %}
+</div>

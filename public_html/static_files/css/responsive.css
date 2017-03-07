@@ -100,9 +100,6 @@
 		float: none;
 		margin-left: 15px;
 	}
-	.classic-title{
-		margin-top: 30px;
-	}
 	.page-banner {
 		text-align: center;
 	}
@@ -375,9 +372,6 @@
       display: inline-block;
       margin: 0 0 20px 0;
       overflow: hidden;
-    }
-    .classic-title{
-    	margin-top: 20px;
     }
     .support-main .su-content-wrap{
     	padding: 30px 15px;

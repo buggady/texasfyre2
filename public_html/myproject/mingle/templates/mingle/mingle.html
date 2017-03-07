@@ -30,73 +30,10 @@
 <div id="content">
   <div class="container">
     <div class="page-content">
-      <div class="row">
-        <div class="col-md-7">
-          <!-- Classic Heading -->
-          <h4 class="classic-title"><span>This should get interesting!</span></h4>
-          <!-- Some Text -->
-          <p>Work in progress!</p>
-        </div>
-      <div class="col-md-5">
-
-      <!-- Start Touch Slider -->
-      <div class="touch-slider" data-slider-navigation="true" data-slider-pagination="true">
-        <div class="item"><img alt="" src="http://lorempixel.com/400/300/animals/1"></div>
-      </div>
-      <!-- End Touch Slider -->
-    </div>
-  </div>
-
-  <!-- Divider -->
-  <div class="hr1" style="margin-bottom:50px;"></div>
-  <div class="row">
-    <div class="col-md-6">
-      <!-- Classic Heading -->
-      <h4 class="classic-title"><span>Our Home towns</span></h4>
-      <div class="skill-shortcode">
-        <div class="skill">
-          <p>Dallas, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="90">
-              <span class="progress-bar-span">20</span>
-              <span class="sr-only">90% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>Austin, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="100">
-              <span class="progress-bar-span">25</span>
-              <span class="sr-only">100% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>San Marcos, TX</p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="70">
-              <span class="progress-bar-span">10</span>
-              <span class="sr-only">70% Complete</span>
-            </div>
-          </div>
-        </div>
-        <div class="skill">
-          <p>Houston, TX  </p>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" data-percentage="20">
-              <span class="progress-bar-span">5</span>
-              <span class="sr-only">20% Complete</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <!-- Classic Heading -->
-      <h4 class="classic-title"><span>Stuff We Do</span></h4>
+    <a id="submit_video" class="btn btn-system">Give Us Something</a>
+      <h4 class="classic-title"><span>Let's show off some videos a bit</span></h4>
       <!-- Accordion -->
+      
       <div class="panel-group" id="accordion">
         <!-- Start Accordion 1 -->
         <div class="panel panel-default">
@@ -105,38 +42,47 @@
             <h4 class="panel-title">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse-1">
                 <i class="fa fa-angle-up control-icon"></i>
-                <i class="fa fa-desktop"></i> Events
+                <i class="fa fa-desktop"></i> User Uploaded Videos
               </a>
             </h4>
           </div>
           <!-- Toggle Content -->
           <div id="collapse-1" class="panel-collapse collapse in">
-            <div class="panel-body"><img class="img-thumbnail image-text" style="float:left; width:150px;" alt="" src="{% static 'images/PortAransas.jpg' %}" /> <strong class="accent-color">Gatherings</strong> We host social gatherings almost weekly, with larger gatherings monthly. We also plan trips that we pool our resources together and have an awesome time</div>
+            <div class="row">
+            {% for video in object_list %}
+              <div class="col-md-3">
+                <iframe width="200" height="100" src="https://www.youtube.com/embed/{{video.video_id}}" frameborder="0" allowfullscreen></iframe>
+                <div class="row" style="margin:5px">
+                <div class="col-md-5 col-md-offset-1">
+                  <a href="{% url 'up_vote' video.id %}" class="btn btn-system">Up Vote</a>
+                </div>
+                <div class="col-md-5">
+                  <a href="{% url 'down_vote' video.id %}" class="btn btn-system">Down Vote</a>
+                </div>
+                </div>
+                <p><strong class="accent-color">Uploaded By: </strong> {{video.uploader}}</p>
+                <p><strong class="accent-color">Category: </strong> {{video.category}}</p>
+                <p><strong class="accent-color">Votes: </strong> {{video.votes.count}}</p>
+              </div>
+              {% endfor %}
+            </div>
           </div>
         </div>
         <!-- End Accordion 1 -->
-
-        <!-- Start Accordion 2 -->
-        <div class="panel panel-default">
-          <!-- Toggle Heading -->
-          <div class="panel-heading">
-            <h4 class="panel-title">
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapse-2" class="collapsed">
-                <i class="fa fa-angle-up control-icon"></i>
-                <i class="fa fa-gift"></i> Network
-              </a>
-            </h4>
-          </div>
-          <!-- Toggle Content -->
-          <div id="collapse-2" class="panel-collapse collapse">
-            <div class="panel-body">Not only do we plan trips but we are also well connected with a network of people that can do all things through Christ who strengthens us</div>
-          </div>
-        </div>
-        <!-- End Accordion 2 -->
       </div>
+      
+      
     </div>
   </div>
 </div>
-</div>
-</div>
+{% endblock %}
+{% block javascript %}
+<script>
+  $('#submit_video').click(function() {
+    $('#form-modal-body').load("{% url 'submit_video' %}", function () {
+      $('#form-modal').modal('toggle');
+      formAjaxSubmit('#form-modal-body form', '#form-modal');
+    });
+  });
+</script>
 {% endblock %}

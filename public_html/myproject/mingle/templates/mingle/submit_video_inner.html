@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load crispy_forms_tags %}
+<div class="content">
+  <!-- Classic Heading -->
+  <h4 class="classic-title"><span>{% trans "Submit Video" %}</span></h4>  
+
+   {% crispy form %}
+   {{ status }}
+</div>
+

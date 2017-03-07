@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block title %}{% trans "Contact Us" %}{% endblock title %}
 {% block content %}
 
@@ -18,10 +19,10 @@
         <h4 class="classic-title"><span>Contact Us If You Must</span></h4>
 
         <!-- Start Contact Form -->
-        <form role="form" method="POST" id="contactForm" data-toggle="validator" class="ContactForm shake" action="{% url 'contact' %}">
-        {% csrf_token %}
-        <!-- {{ form }} -->
-        {{ form.non_field_errors }}
+        {% crispy form %}
+        {{ status }}
+        <!--<form role="form" method="POST" id="contactForm" data-toggle="validator" class="ContactForm shake" action="{% url 'contact' %}">
+
           <div class="form-group">
             <div class="controls">
               <input id="id_name" name="name" type="text" placeholder="Name">{{ form.name.errors }}
@@ -45,12 +46,11 @@
 
           <button type="submit" id="submit" class="btn-system btn-large">Send</button>
           <div id="msgSubmit" class="h3 text-center hidden"></div>
-          <div class="clearfix"></div>
+          <div class="clearfix"></div> 
 
-          {{ status }}
+          
 
-        </form>
-        <!-- End Contact Form -->
+        </form> -->
       </div>
 
       <div class="col-md-4">

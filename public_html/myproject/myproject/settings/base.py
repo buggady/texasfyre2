@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'djstripe',
     'newsletter',
+    'vote',
+    'photologue',
+    'sortedm2m',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -115,8 +118,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_ROOT = '/home1/texasfyr/public_html/static_files/'
-
 STATIC_URL = '/static_files/'
+
+MEDIA_ROOT = '/home1/texasfyr/public_html/media_files/'
+MEDIA_URL = '/media/'
 
 AUTHENTICATION_BACKENDS = (
 
@@ -130,6 +135,8 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 
 LOGIN_REDIRECT_URL='/home/'
+
+CRISPY_TEMPLATE_PACK='bootstrap3'
 
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'box1156.bluehost.com'

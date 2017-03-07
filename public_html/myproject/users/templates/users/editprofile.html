@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 {% block title %}{% trans "Edit Profile" %}{% endblock title %}
 {% block content %}
 
@@ -31,70 +32,114 @@
       <div class="col-md-8">
         <!-- Classic Heading -->
         <h4 class="classic-title"><span>Give us some details already</span></h4>
-
-        <!-- Start Contact Form -->
-        <form role="form" method="POST" id="editProfileForm" data-toggle="validator" class="EditProfileForm shake" action="{% url 'edit_profile' %}">
-        {% csrf_token %}
-        <!-- {{ form }} -->
-        {{ form.non_field_errors }}
-          <div class="form-group">
-            <div class="controls">
-              <input id="id_first_name" name="first_name" type="text" placeholder="First Name">{{ form.name.errors }}
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="controls">
-              <input id="id_last_name" name="last_name" type="text" placeholder="Last Name">{{ form.name.errors }}
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="controls">
-              <input id="id_home_town" name="home_town" type="text" placeholder="Home Town">{{ form.name.errors }}
-            </div>
-          </div>
-
-          <button type="submit" id="submit" class="btn-system btn-large">Save</button>
-          <div id="msgSubmit" class="h3 text-center hidden"></div>
-          <div class="clearfix"></div>
-
-          {{ status }}
-
-        </form>
-        <!-- End Contact Form -->
-      </div>
-
-      <div class="col-md-4">
-
-        <!-- Classic Heading -->
-        <h4 class="classic-title"><span>Information</span></h4>
-
-        <!-- Some Info -->
-        <p>We might have some interesting information written here eventually. Go away for now. That form over there actually contacts us. We know how to do stuff.</p>
-
-        <!-- Divider -->
-        <div class="hr1" style="margin-bottom:10px;"></div>
-
-        <!-- Info - Icons List -->
-        <ul class="icons-list">
-          <li><i class="fa fa-globe">  </i> <strong>Address:</strong> Plano, TX</li>
-          <li><i class="fa fa-envelope-o"></i> <strong>Email:</strong> accounts@texasfyre.com</li>
-          <li><i class="fa fa-mobile"></i> <strong>Phone:</strong> 817-946-1283</li>
-        </ul>
-
-        <!-- Divider -->
-        <div class="hr1" style="margin-bottom:15px;"></div>
-
-        <!-- Classic Heading -->
-        <h4 class="classic-title"><span>Working Hours</span></h4>
-
-        <!-- Info - List -->
-        <ul class="list-unstyled">
-          <li><strong>Monday - Friday</strong> - 9am to 5pm</li>
-          <li><strong>Saturday</strong> We don't work</li>
-          <li><strong>Sunday</strong> We don't work</li>
-        </ul>
+        
+        <!-- Start Edit Profile Form -->
+        {% crispy form %}
+        {{ status }}
+        <!-- End Edit Profile Form -->
       </div>
     </div>
   </div>
+</div>
+
+<!-- Style Switcher -->
+<div class="switcher-box">
+  <a class="open-switcher show-switcher"><i class="fa fa-cog fa-2x"></i></a>
+  <h4>Switch it up</h4>
+  <span>Pick Your Theme Color</span>
+  <ul class="colors-list">
+    <li>
+      <a href="javascript:chooseStyle('blue', 60)" title="Blue" class="blue"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('sky-blue', 60)" title="Sky Blue" class="sky-blue"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('cyan', 60)" title="Cyan" class="cyan"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('jade', 60)" title="Jade" class="jade"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('green', 60)" title="Green" class="green"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('purple', 60)" title="Purple" class="purple"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('pink', 60)" title="Pink" class="pink"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('red', 60)" title="Red" class="red"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('orange', 60)" title="Orange" class="orange"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('yellow', 60)" title="Yellow" class="yellow"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('peach', 60)" title="Peach" class="peach"></a>
+    </li>
+    <li>
+      <a href="javascript:chooseStyle('beige', 60)" title="Biege" class="beige"></a>
+    </li>
+  </ul>
+  <!--<span>Top Bar Color</span>
+  <select id="topbar-style" class="topbar-style">
+    <option value="1">Light (Default)</option>
+    <option value="2">Dark</option>
+    <option value="3">Color</option>
+  </select>
+  <span>Layout Style</span>
+  <select id="layout-style" class="layout-style">
+    <option value="1">Wide</option>
+    <option value="2">Boxed</option>
+  </select>
+  <span>Patterns for Boxed Version</span>
+  <ul class="bg-list">
+    <li>
+      <a href="#" class="bg1"></a>
+    </li>
+    <li>
+      <a href="#" class="bg2"></a>
+    </li>
+    <li>
+      <a href="#" class="bg3"></a>
+    </li>
+    <li>
+      <a href="#" class="bg4"></a>
+    </li>
+    <li>
+      <a href="#" class="bg5"></a>
+    </li>
+    <li>
+      <a href="#" class="bg6"></a>
+    </li>
+    <li>
+      <a href="#" class="bg7"></a>
+    </li>
+    <li>
+      <a href="#" class="bg8"></a>
+    </li>
+    <li>
+      <a href="#" class="bg9"></a>
+    </li>
+    <li>
+      <a href="#" class="bg10"></a>
+    </li>
+    <li>
+      <a href="#" class="bg11"></a>
+    </li>
+    <li>
+      <a href="#" class="bg12"></a>
+    </li>
+    <li>
+      <a href="#" class="bg13"></a>
+    </li>
+    <li>
+      <a href="#" class="bg14"></a>
+    </li>
+  </ul>-->
 </div>
 {% endblock %}

@@ -143,10 +143,6 @@ p strong {
 	font-weight: 700;
 }
 
-.page-content p {
-	margin-bottom: 15px;
-}
-
 .wite-text {
 	color: #fff;
 }
@@ -1122,9 +1118,10 @@ input[type="submit"] {
 }
 
 .widget-search input[type="search"],
-#contactForm input[type="text"],
-#contactForm input[type="email"],
-#contactForm textarea,
+.generalForm input[type="text"],
+.generalForm input[type="email"],
+.generalForm textarea,
+.generalForm input[type="password"],
 #loginForm input[type="text"],
 #loginForm input[type="password"],
 #signupForm input[type="text"],
@@ -1152,9 +1149,11 @@ input[type="submit"] {
 }
 
 .widget-search input[type="search"]:focus,
-#contactForm input[type="text"]:focus,
-#contactForm input[type="email"]:focus,
-#contactForm textarea:focus,
+.generalForm input[type="text"]:focus,
+.generalForm input[type="email"]:focus,
+.generalForm textarea:focus,
+.generalForm input[type="password"]:focus,
+#signupForm input[type="text"]:focus,
 #loginForm input[type="text"]:focus,
 #loginForm input[type="password"]:focus,
 #signupForm input[type="text"]:focus,

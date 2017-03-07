@@ -3,14 +3,14 @@
 {% providers_media_js %}
 <div class="content">
   <!-- Classic Heading -->
-  <h4 class="classic-title"><span>{% trans "Sign In" %}</span></h4>  
+  <h4 class="classic-title" style="margin-top:0px"><span>{% trans "Sign In" %}<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></span></h4>
    <div class="row">
-     <div class="col-md-5">
+     <div class="col-md-5 col-xs-9 col-md-offset-1" style="padding-bottom:5px">
      <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn btn-block btn-social btn-facebook">
       <span class="fa fa-facebook"></span> Sign in with Facebook
     </a>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-5 col-xs-9" style="padding-bottom:5px">
     <a href="{% provider_login_url 'google' %}" class="btn btn-block btn-social btn-google">
       <span class="fa fa-google"></span> Sign in with Google
     </a>
@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
       <div class="controls">
-        <input id="id_password"  class="login-input" name="password" placeholder="Password" type="password" />{{ form.password.errors }}
+        <input id="id_password" class="login-input" name="password" placeholder="Password" type="password" />{{ form.password.errors }}
       </div>
     </div>
     <div class="remember-forgot-section">

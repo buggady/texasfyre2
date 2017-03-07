@@ -1,8 +1,17 @@
 {% extends 'base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Texas Fyre" %}{% endblock title %}
+{% block title %}{% trans "Home" %}{% endblock title %}
 {% block content %}
 {% load static %}
+
+<div id="messages" style="display: none;">
+{% if messages %}
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+{% endif %}
+</div>
+
 <!-- Main Slider Section -->
 <section id="slider">
   <div class="tp-banner-container">
@@ -10,7 +19,7 @@
       <ul>
         <li data-transition="zoomout" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="{% static 'images/slider/bg4.jpg' %}" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="on">
           <!-- MAIN IMAGE -->
-          <img src="{% static 'images/FyrGirlsTW.jpg' %}" alt="laptopmockup_sliderdy" data-lazyload="{% static 'images/FyrGirlsTW.jpg' %}">
+          <img src="{% static 'images/FyrHome.jpg' %}" alt="laptopmockup_sliderdy" data-lazyload="{% static 'images/FyrHome.jpg' %}">
         </li>
       </ul>
     </div>
