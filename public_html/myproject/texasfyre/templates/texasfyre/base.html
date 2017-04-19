@@ -170,10 +170,10 @@
               <ul class="nav navbar-nav navbar-right">
                 <li><a {% if 'home' in request.path %}class="active"{% endif %} href="{% url 'home' %}">Home</a></li>
                 {% if request.user.is_authenticated %}
+                <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
                 {% if request.user.profile.account_verified %}
                 <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
                 <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
-                <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
                 <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
                 <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
                 <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
@@ -196,10 +196,10 @@
           <ul class="wpb-mobile-menu">
             <li><a {% if 'home' in request.path %}class="active"{% endif %} href="{% url 'home' %}">Home</a></li>
             {% if request.user.is_authenticated %}
+            <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
             {% if request.user.profile.account_verified %}
             <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
             <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
-            <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
             <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
             <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
             <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>

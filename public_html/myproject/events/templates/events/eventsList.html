@@ -43,7 +43,9 @@
 	                		<p class="body animated8">{{event.start_date|date}}</p>
 	                	</div>
 	                	<div class="icon-list">
+	                		{% if request.user.profile.account_verified %}
 	                		<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
+	                		{% endif %}
 	                  		<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
 	                	</div> 
 	                	{% endwith %}
@@ -64,7 +66,9 @@
 						        <div class="portfolio-border">
 						            <div class="portfolio-thumb" style="height:200px">
 						               	{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
+						               	{% if request.user.profile.account_verified %}
 						              	<a href="{% url 'eventdetails' event.slug %}">
+						              	{% endif %}
 						              	<!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
 						                <!--<div class="thumb-overlay"><i class="fa fa-play"></i></div>-->
 						                	<img src="{% static image_static %}" alt="" />
@@ -72,10 +76,12 @@
 						              	{% endwith %}
 						            </div>
 						            <div class="portfolio-details">
+						                {% if request.user.profile.account_verified %}
 						                <a href="{% url 'eventdetails' event.slug %}">
 						                	<h4>{{event.title}}</h4>
 						                	<span>{{event.start_date|date}}</span>
 						                </a>
+						                {% endif %}
 						            </div>
 						        </div>
 						    </div>
@@ -84,7 +90,9 @@
 	                			<p class="body animated8">{{event.start_date|date}}</p>
 	                		</div>
 	                		<div class="icon-list">
+	                			{% if request.user.profile.account_verified %}
 	                			<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
+	                			{% endif %}
 	                  			<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
 	                		</div>
 						</li>
