@@ -3,10 +3,10 @@ from django.core.mail import send_mail
 from forms import ContactForm
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'texasfyre/home.html')
 
 def about(request):
-   return render(request, 'about.html')
+   return render(request, 'texasfyre/about.html')
 
 def contact(request):
    
@@ -28,4 +28,4 @@ def contact(request):
             send_mail(subject, message, email, recipients)
             message = 'You did something right!'
       
-    return render(request, 'contact.html', {'form': form, 'status': message})
+    return render(request, 'texasfyre/contact.html', {'form': form, 'status': message})

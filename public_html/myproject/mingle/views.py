@@ -5,9 +5,14 @@ from django.core.urlresolvers import reverse
 from django.views.generic.edit import FormView
 from forms import SubmitVideoForm
 from django.views import generic
+from django.views.generic import ListView
+
 from models import Videos
 from django.contrib.auth.models import User
 from urlparse import urlparse, parse_qs
+
+from allauth.account.decorators import verified_email_required
+
 
 class AjaxTemplateMixin(object):
  
@@ -23,9 +28,14 @@ class AjaxTemplateMixin(object):
 
 class VideosView(generic.ListView):
     template_name = 'mingle/mingle.html'
+    model = Videos
     
     def get_queryset(self):
         return Videos.objects.all().order_by("category")[:25]
+
+    def post(self, request, *args, **kwargs):
+
+        return VideosView.as_view()
 
 mingle = VideosView.as_view()
 
@@ -66,6 +76,7 @@ def up_vote(request, pk):
 		tmp_user = get_object_or_404(User, username=request.user.username)
 		
 		tmp_video.votes.up(tmp_user.id)
+        tmp_video.save()
 
 	return HttpResponseRedirect(reverse('mingle'))
 
@@ -75,7 +86,7 @@ def down_vote(request, pk):
         tmp_user = get_object_or_404(User, username=request.user.username)
         
         tmp_video.votes.down(tmp_user.id)
-
+        tmp_video.save()
     return HttpResponseRedirect(reverse('mingle'))
 
 

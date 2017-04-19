@@ -3,6 +3,9 @@ from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from django.utils import timezone
 
+from taggit.managers import TaggableManager
+from photologue.models import Gallery
+
 class Event(models.Model):
     title = models.CharField(max_length=140)
     description = models.TextField(null=True)
@@ -11,6 +14,10 @@ class Event(models.Model):
     total_price = models.IntegerField(default="0")
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     slug = AutoSlugField(populate_from='title', editable=True)
+
+    gallery = models.OneToOneField(Gallery,null=True)
+
+    tags = TaggableManager()
 
     @property
     def in_the_past(self):

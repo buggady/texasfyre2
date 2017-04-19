@@ -1,6 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'texasfyre/base.html' %}
 {% load i18n %}
 {% load static %}
+{% load vote %}
 {% block title %}{% trans "Mingle" %}{% endblock title %}
 {% block content %}
 
@@ -26,6 +27,7 @@
 </div>
 <!-- End Page Banner -->
 
+{% if request.user.profile.account_verified %}
 <!-- Start Content -->
 <div id="content">
   <div class="container">
@@ -53,12 +55,14 @@
               <div class="col-md-3">
                 <iframe width="200" height="100" src="https://www.youtube.com/embed/{{video.video_id}}" frameborder="0" allowfullscreen></iframe>
                 <div class="row" style="margin:5px">
-                <div class="col-md-5 col-md-offset-1">
-                  <a href="{% url 'up_vote' video.id %}" class="btn btn-system">Up Vote</a>
-                </div>
-                <div class="col-md-5">
-                  <a href="{% url 'down_vote' video.id %}" class="btn btn-system">Down Vote</a>
-                </div>
+                  <div class="col-md-4 col-md-offset-4">
+                    {% vote_exists video as does_vote_exist %}
+                    {% if does_vote_exist %}
+                    <a href="{% url 'down_vote' video.id %}" class="btn btn-system">Down Vote</a>
+                     {% else %}
+                     <a href="{% url 'up_vote' video.id %}" class="btn btn-system">Up Vote</a>
+                     {% endif %}
+                  </div>
                 </div>
                 <p><strong class="accent-color">Uploaded By: </strong> {{video.uploader}}</p>
                 <p><strong class="accent-color">Category: </strong> {{video.category}}</p>
@@ -75,6 +79,7 @@
     </div>
   </div>
 </div>
+{% else %} Go away, this page isn't ready {% endif %} 
 {% endblock %}
 {% block javascript %}
 <script>
@@ -86,3 +91,4 @@
   });
 </script>
 {% endblock %}
+

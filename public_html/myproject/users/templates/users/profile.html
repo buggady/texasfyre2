@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "texasfyre/base.html" %}
 {% load i18n %}
 {% load static %}
 {% block title %}{% trans "Your Profile" %}{% endblock title %}
@@ -28,7 +28,7 @@
 </div>
 <!-- End Page Banner -->
 
-
+{% if request.user.profile.account_verified %}
 <!-- Start Content -->
 <div id="content">
   <div class="container">
@@ -119,6 +119,6 @@
   </div>
 </div>
 <!-- End Content -->
-
+{% else %} Go away, this page isn't ready {% endif %} 
 {% endblock %}
 

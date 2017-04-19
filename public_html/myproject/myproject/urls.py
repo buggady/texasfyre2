@@ -1,19 +1,21 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.auth.views import logout
+from oscar.app import application
 
 urlpatterns = [
-	url(r'^admin/', admin.site.urls),
 	url(r'^', include('texasfyre.urls')),
 	url(r'^events/', include('events.urls')),
 	url(r'^user/', include('users.urls')),
 	url(r'^mingle/', include('mingle.urls')),
-	url(r'^market/', include('market.urls')),
-	url(r'^accounts/logout/$', 'django.contrib.auth.views.logout',{'next_page': '/'}),
+	url(r'^market/', include(application.urls)),
+	url(r'^accounts/logout/$', logout,{'next_page': '/'}),
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^photologue/', include('photologue.urls', namespace='photologue')),
-	url(r'^payments/', include('djstripe.urls', namespace="djstripe")),
 	url(r'^newsletter/', include('newsletter.urls')),
+	 url(r'^i18n/', include('django.conf.urls.i18n')),
+	url(r'^admin/', admin.site.urls),
 ] 
 
 if settings.DEBUG:

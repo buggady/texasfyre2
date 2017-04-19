@@ -1,0 +1,90 @@
+{% extends 'texasfyre/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Contact Us" %}{% endblock title %}
+{% block content %}
+
+<!-- Start Map -->
+<!--<div id="google-map">
+</div>
+<!-- End Map -->
+
+<!-- Start Content -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Classic Heading -->
+        <h4 class="classic-title"><span>Contact Us If You Must</span></h4>
+
+        <!-- Start Contact Form -->
+        {% crispy form %}
+        {{ status }}
+        <!--<form role="form" method="POST" id="contactForm" data-toggle="validator" class="ContactForm shake" action="{% url 'contact' %}">
+
+          <div class="form-group">
+            <div class="controls">
+              <input id="id_name" name="name" type="text" placeholder="Name">{{ form.name.errors }}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="controls">
+              <input id="id_email" name="email" type="email" placeholder="Email">{{ form.email.errors }}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="controls">
+              <input id="id_subject" name="subject" type="text" placeholder="Subject">{{ form.subject.errors }}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="controls">
+              <textarea id="id_message" name="message" rows="7" placeholder="Message"></textarea>{{ form.message.errors }}
+            </div>
+          </div>
+
+          <button type="submit" id="submit" class="btn-system btn-large">Send</button>
+          <div id="msgSubmit" class="h3 text-center hidden"></div>
+          <div class="clearfix"></div> 
+
+          
+
+        </form> -->
+      </div>
+
+      <div class="col-md-4">
+
+        <!-- Classic Heading -->
+        <h4 class="classic-title"><span>Information</span></h4>
+
+        <!-- Some Info -->
+        <p>We might have some interesting information written here eventually. Go away for now. That form over there actually contacts us. We know how to do stuff.</p>
+
+        <!-- Divider -->
+        <div class="hr1" style="margin-bottom:10px;"></div>
+
+        <!-- Info - Icons List -->
+        <ul class="icons-list">
+          <li><i class="fa fa-globe">  </i> <strong>Address:</strong> Plano, TX</li>
+          <li><i class="fa fa-envelope-o"></i> <strong>Email:</strong> accounts@texasfyre.com</li>
+          <li><i class="fa fa-mobile"></i> <strong>Phone:</strong> 817-946-1283</li>
+        </ul>
+
+        <!-- Divider -->
+        <div class="hr1" style="margin-bottom:15px;"></div>
+
+        <!-- Classic Heading -->
+        <h4 class="classic-title"><span>Working Hours</span></h4>
+
+        <!-- Info - List -->
+        <ul class="list-unstyled">
+          <li><strong>Monday - Friday</strong> - 9am to 5pm</li>
+          <li><strong>Saturday</strong> We don't work</li>
+          <li><strong>Sunday</strong> We don't work</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

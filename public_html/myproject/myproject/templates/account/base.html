@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "texasfyre/base.html" %}
 
-{% block body %}
+{% block content %}
 	{% if messages %}
 	<div>
 	  <strong>Messages:</strong>
@@ -12,19 +12,7 @@
 	</div>
 	{% endif %}
 
-	<div>
-	  <strong>Menu:</strong>
-	  <ul>
-	    {% if user.is_authenticated %}
-	        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
-	        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
-	    {% else %}
-	        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-	        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
-	    {% endif %}
-	  </ul>
-	</div>
-	{% block content %}
+	{% block subcontent %}
 	{% endblock %}
 {% endblock %}
 {% block extra_body %}

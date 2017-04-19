@@ -414,7 +414,7 @@ header{
 }
 
 .login-header {
-	float:right;
+	float:left;
 }
 
 .navbar-top.affix{

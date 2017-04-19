@@ -1,0 +1,40 @@
+{% extends "texasfyre/base.html" %}
+{% block extra_head %}
+    {% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}
+
+    <meta name="created" content="{% now "jS M Y h:i" %}" />
+    <meta name="robots" content="NOARCHIVE,NOCACHE" />
+
+    {# Block where global CSS will go. #}
+    {% block styles %}{% endblock %}
+
+    {# Additional CSS - specific to certain pages #}
+    {% block extrastyles %}{% endblock %}
+
+    {% block extrahead %}{% endblock %}
+
+    {% block tracking %}
+        {# Default to using Google analytics #}
+        {% include "oscar/partials/google_analytics.html" %}
+    {% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{# Main content goes in this 'layout' block #}
+{% block layout %}{% endblock %}
+
+{# Local scripts #}
+{% block scripts %}{% endblock %}
+
+{# Additional JS scripts #}
+{% block extrascripts %}{% endblock %}
+
+{# Block for body onload functions #}
+<script type="text/javascript">
+    $(function() {
+        {% block onbodyload %}{% endblock %}
+    });
+</script>
+</div>
+{% endblock %}

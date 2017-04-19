@@ -3,6 +3,8 @@ from autoslug import AutoSlugField
 from django.contrib.auth.models import User
 from vote.models import VoteModel
 
+from taggit.managers import TaggableManager
+
 class Videos(VoteModel, models.Model):
 	CATEGORY_CHOICES = (
 		('general', 'General'),
@@ -17,3 +19,5 @@ class Videos(VoteModel, models.Model):
 	watch_url = models.URLField(max_length=200)
 	video_id = models.CharField(max_length=100)
 	slug = AutoSlugField(populate_from='title', editable=True)
+
+	tags = TaggableManager()
