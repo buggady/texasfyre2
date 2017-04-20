@@ -23,7 +23,7 @@ def contact(request):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
 
-            recipients = ['info@texasfyre.com']
+            recipients = ['info@fyrpresents.com']
 
             send_mail(subject, message, email, recipients)
             message = 'You did something right!'

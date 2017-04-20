@@ -13,7 +13,7 @@
     <!-- Page Description and Author -->
     <meta name="description" content="Fyr Presents public website">
     <meta name="author" content="Fyr Presents">
-
+    <meta name="google-site-verification" content="p9dK81E9uvP7LRlULybrQrjuNHKxiXfKi43iifKK-Ds" />
     <link rel="icon" href="../../favicon.ico">
 
     {% block extra_head %}
@@ -92,7 +92,7 @@
                 <ul class="contact-details">
                   <li><a href="#"><i class="fa fa-map-marker"></i> Everywhere, Texas</a>
                   </li>
-                  <li><a href="#"><i class="fa fa-envelope-o"></i> accounts@texasfyre.com</a>
+                  <li><a href="#"><i class="fa fa-envelope-o"></i> info@fyrpresents.com</a>
                   </li>
                   <li><a href="#"><i class="fa fa-phone"></i> 817-946-1283</a>
                   </li>
@@ -138,11 +138,6 @@
                 </ul> -->
                 <!-- End Social Links -->
               </div>
-              <div class="login-header">
-                {% if request.user.is_authenticated %}
-                  <a href="/accounts/logout/">Logout</a>
-                {% endif %}
-              </div>
             </div>
             <!-- .row -->
           </div>
@@ -160,8 +155,9 @@
                 <i class="fa fa-bars"></i>
               </button>
               <!-- End Toggle Nav Link For Mobiles -->
-              <a class="navbar-brand" href="/user">
+              <a class="navbar-brand" href="/home">
                 <img alt="" src="{% static 'images/FyrLogoSmall.png' %}">
+                <!--<img alt="" src="{% static 'images/FyrPresentsLogoSmall.png' %}">-->
               </a>
             </div>
             <div class="navbar-collapse collapse">
@@ -175,18 +171,15 @@
                 <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
                 <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
                 <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
-                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-                {% else %}
-                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
                 {% endif %}
+                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
+                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
+                <li><a {% if 'logout' in request.path %}class="active"{% endif %} href="/accounts/logout/">Log Out</a></li>
                 {% else %}
                 <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
                 <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
                 <li><a {% if 'accounts' in request.path %}class="active"{% endif %} href="{% url 'account_login' %}">Members</a></li>
                 {% endif %}
-                 
               </ul>
               <!-- End Navigation List -->
             </div>
@@ -201,12 +194,10 @@
             <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
             <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
             <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
-            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-            {% else %}
-            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
             {% endif %}
+            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
+            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
+            <li><a {% if 'logout' in request.path %}class="active"{% endif %} href="/accounts/logout/">Log Out</a></li>
             {% else %}
             <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
             <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
@@ -284,8 +275,8 @@
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
                 <ul>
                   <li><span>Phone Number:</span> 817-946-1283</li>
-                  <li><span>Email:</span> accounts@texasfyre.com</li>
-                  <li><span>Website:</span> www.texasfyre.com</li>
+                  <li><span>Email:</span> info@fyrpresents.com</li>
+                  <li><span>Website:</span> www.fyrpresents.com</li>
                 </ul>
               </div>
             </div>

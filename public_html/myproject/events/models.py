@@ -7,17 +7,28 @@ from taggit.managers import TaggableManager
 from photologue.models import Gallery
 
 class Event(models.Model):
+    
+    CATEGORY_CHOICES = (
+        ('general', 'General'),
+        ('vacation', 'Vacation'),
+        ('festival', 'Festival'),
+        ('camping', 'Camping'),
+        ('entertainment', 'Entertainment'),
+        ('show', 'Show'),
+    )
+
     title = models.CharField(max_length=140)
     description = models.TextField(null=True)
+    category = models.CharField(max_length=14, choices=CATEGORY_CHOICES, default='general')
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
     total_price = models.IntegerField(default="0")
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     slug = AutoSlugField(populate_from='title', editable=True)
 
-    gallery = models.OneToOneField(Gallery,null=True)
+    gallery = models.OneToOneField(Gallery, null=True)
 
-    tags = TaggableManager()
+    #tags = TaggableManager()
 
     @property
     def in_the_past(self):
