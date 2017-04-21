@@ -13,7 +13,7 @@
       <div class="row">
         <div class="col-md-6">
           <h2>Events</h2>
-          <p>We hope they are coming up</p>
+          <p>Check out some the things we are doing.</p>
         </div>
         <div class="col-md-6">
           <ul class="breadcrumbs">
@@ -28,32 +28,35 @@
     <!-- Start Content -->
   	<div id="content">
     	<div class="container">
-      		<div class="portfolio-page portfolio-3column">
-				<!-- Start Recent Projects Carousel -->
-        		<ul id="portfolio-list" data-animated="fadeIn">
-	    	    	{% for event in object_list %}
-	            	{% if not event.in_the_past %}
-	    	    	<li>
-	    	    		{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
-	      				<div class="crop">
-	            			<img src="{% static image_static %}" alt="" />
-	            		</div>
-	                	<div class="portfolio-item-content">
-	                		<span class="header">{{event.title}}</span>
-	                		<p class="body animated8">{{event.start_date|date}}</p>
-	                	</div>
-	                	<div class="icon-list">
-	                		{% if request.user.profile.account_verified %}
-	                		<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
-	                		{% endif %}
-	                  		<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
-	                	</div> 
-	                	{% endwith %}
-	              	</li>
-	            	{% endif %}
-	    			{% endfor %}
-    			</ul>
-          	</div>
+    		<div class="recent-projects">
+				<h4 class="title"><span>Our Upcoming Events</span></h4>
+		  		<div class="portfolio-page portfolio-3column">
+					<!-- Start Recent Projects Carousel -->
+		    		<ul id="portfolio-list" data-animated="fadeIn">
+		    	    	{% for event in object_list %}
+		            	{% if not event.in_the_past %}
+		    	    	<li>
+		    	    		{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
+		      				<div class="crop">
+		            			<img src="{% static image_static %}" alt="" />
+		            		</div>
+		                	<div class="portfolio-item-content">
+		                		<span class="header">{{event.title}}</span>
+		                		<p class="body animated8">{{event.start_date|date}}</p>
+		                	</div>
+		                	<div class="icon-list">
+		                		{% if request.user.profile.account_verified %}
+		                		<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
+		                		{% endif %}
+		                  		<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
+		                	</div> 
+		                	{% endwith %}
+		              	</li>
+		            	{% endif %}
+		    			{% endfor %}
+					</ul>
+		      	</div>
+		    </div>
 		    <!-- Start Recent Projects Carousel -->
 		    <div class="recent-projects" style="padding-top:100px">
 		      	<h4 class="title"><span>Our Past Events</span></h4>

@@ -14,7 +14,8 @@ urlpatterns = [
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 	url(r'^newsletter/', include('newsletter.urls')),
-	 url(r'^i18n/', include('django.conf.urls.i18n')),
+	url(r'^i18n/', include('django.conf.urls.i18n')),
+	url(r'^admin_tools/', include('admin_tools.urls')),
 	url(r'^admin/', admin.site.urls),
 ] 
 

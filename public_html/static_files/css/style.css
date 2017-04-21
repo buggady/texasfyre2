@@ -47,6 +47,7 @@ strong, b {
 
 img {
 	max-width: 100%;
+	min-height: 100%;
 	height: auto;
 }
 
@@ -2959,18 +2960,27 @@ ul.icons-list li i {
 	margin-top: 4px;
 }
 
-
-
-
-
-
 /*------------------------------------------*/
 /*	        06 - Portfolio Styles
 /*------------------------------------------*/
 
-.crop img {
-    width: 600px;
+
+
+.crop {
     height: 400px;
+    max-width: 600px;
+    overflow: hidden;  
+}
+
+.crop img {
+    max-width: 100%;
+    min-height:100%;
+}
+
+@media only screen and (max-width: 1200px) {
+    .crop {
+        height:300px;
+    }
 }
 
 .portfolio-filter {

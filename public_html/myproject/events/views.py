@@ -24,27 +24,24 @@ class DetailView(generic.DetailView):
 		tmp_event = self.get_object()
 
 		# path joining version for other paths
-		DIR = os.path.join(settings.STATIC_ROOT, 'events/images/', tmp_event.slug)
 		if EventUserRel.objects.filter(user=tmp_user, event=tmp_event).exists():
 			context['is_current_user_registered'] = True
-			if os.path.isdir(DIR):
-					context['range'] = range(len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))]))
-			else:
-				context['range'] = range(0)
 		else:
 			context['is_current_user_registered'] = False
-			context['range'] = range(0)
 		
 		return context
 		
 
-def rsvp(request, pk):
-	tmp_event = get_object_or_404(Event, pk=pk)
+def rsvp(request, slug):
+	tmp_event = get_object_or_404(Event, slug=slug)
 	if request.user.is_authenticated():
 		tmp_user = get_object_or_404(User, username=request.user.username)
 		
 		if not EventUserRel.objects.filter(user=tmp_user, event=tmp_event).exists():
-			p = EventUserRel(user=tmp_user, event=tmp_event)
-			p.save()
-
-	return HttpResponseRedirect(reverse('eventdetails', args=(tmp_event.slug,)))
+			tmp_user_event = EventUserRel(user=tmp_user, event=tmp_event)
+			tmp_user_event.save()
+		else:
+			tmp_user_event = EventUserRel.objects.get(user=tmp_user, event=tmp_event)
+			tmp_user_event.delete()
+	string = tmp_event.slug
+	return HttpResponseRedirect(reverse('eventdetails', kwargs={'slug': tmp_event.slug}))

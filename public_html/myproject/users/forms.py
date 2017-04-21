@@ -16,11 +16,11 @@ class EditProfileForm(forms.Form):
 
     helper.layout = Layout(
         Field('home_town', 
-            placeholder='Name'),
+            placeholder='Home Town'),
         Field('first_name',
-            placeholder='Email'),
+            placeholder='First Name'),
         Field('last_name',
-            placeholder='Subject'),
+            placeholder='Last Name'),
 
         Submit('submit', 'Submit', css_class='btn-system btn-large')
     )

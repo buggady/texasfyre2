@@ -75,6 +75,7 @@
     <script type="text/javascript" src="{% static 'js/style.changer.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.themepunch.revolution.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/jquery.themepunch.tools.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/instafeed.js' %}"></script>
 
   </head>
 
@@ -102,8 +103,8 @@
               <!-- .col-md-6 -->
               <div class="col-md-6">
                 <!-- Start Social Links -->
-                <!-- <ul class="social-list">
-                  <li>
+                <ul class="social-list">
+                 <!-- <li>
                     <a class="facebook itl-tooltip" data-placement="bottom" title="Facebook" href="#"><i class="fa fa-facebook"></i></a>
                   </li>
                   <li>
@@ -123,19 +124,25 @@
                   </li>
                   <li>
                     <a class="tumblr itl-tooltip" data-placement="bottom" title="Tumblr" href="#"><i class="fa fa-tumblr"></i></a>
-                  </li>
+                  </li> -->
                   <li>
-                    <a class="instgram itl-tooltip" data-placement="bottom" title="Instagram" href="#"><i class="fa fa-instagram"></i></a>
+                    <a class="instgram itl-tooltip" data-placement="bottom" title="Instagram" href="https://www.instagram.com/fyrcrew/"><i class="fa fa-instagram"></i></a>
                   </li>
-                  <li>
+                   
+                  <!--<li>
                     <a class="vimeo itl-tooltip" data-placement="bottom" title="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a>
                   </li>
                   <li>
                     <a class="skype itl-tooltip" data-placement="bottom" title="Skype" href="#"><i class="fa fa-skype"></i></a>
-                  </li>
+                  </li> -->
                   <li>
+                  {% if request.user.is_authenticated %}
+                    <a class="instgram itl-tooltip" data-placement="bottom" title="Log Out" href="/accounts/logout/" style="padding:7px 0 7px 0">Log Out</a>
+                  {% else %}
+                  <a id="login" class="btn btn-system" style="color:white">Create Account or Sign In</a>
+                  {% endif %}
                   </li>
-                </ul> -->
+                </ul>
                 <!-- End Social Links -->
               </div>
             </div>
@@ -145,7 +152,7 @@
         </div>
         <!-- .top-bar -->
         <!-- End Top Bar -->
-
+        {% if request.user.profile.account_verified %}
         <!-- Start  Logo & Naviagtion  -->
         <div class="navbar navbar-default navbar-top" role="navigation" data-spy="affix" data-offset-top="50">
           <div class="container">
@@ -167,23 +174,17 @@
                 <li><a {% if 'home' in request.path %}class="active"{% endif %} href="{% url 'home' %}">Home</a></li>
                 {% if request.user.is_authenticated %}
                 <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
-                {% if request.user.profile.account_verified %}
                 <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
-                <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
-                <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
+                <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Assemble</a></li>
+                <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Your Profile</a></li> 
                 {% endif %}
-                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-                <li><a {% if 'logout' in request.path %}class="active"{% endif %} href="/accounts/logout/">Log Out</a></li>
-                {% else %}
-                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-                <li><a {% if 'accounts' in request.path %}class="active"{% endif %} href="{% url 'account_login' %}">Members</a></li>
-                {% endif %}
+                <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About FYR</a></li>
+                <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact Us</a></li>
               </ul>
               <!-- End Navigation List -->
             </div>
           </div>
+          
 
           <!-- Mobile Menu Start -->
           <ul class="wpb-mobile-menu">
@@ -192,17 +193,13 @@
             <li><a {% if 'events' in request.path %}class="active"{% endif %} href="{% url 'eventslist' %}">Events</a></li>
             {% if request.user.profile.account_verified %}
             <li><a {% if 'market' in request.path %}class="active"{% endif %} href="/market">Market</a></li>
-            <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Mingle</a></li>
-            <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Profile</a></li>
+            <li><a {% if 'mingle' in request.path %}class="active"{% endif %} href="{% url 'mingle' %}">Assemble</a></li>
+            <li><a {% if 'profile' in request.path %}class="active"{% endif %} href="{% url 'userprofile' %}">Your Profile</a></li>
             {% endif %}
-            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-            <li><a {% if 'logout' in request.path %}class="active"{% endif %} href="/accounts/logout/">Log Out</a></li>
-            {% else %}
-            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About</a></li>
-            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact</a></li>
-            <li><a {% if 'accounts' in request.path %}class="active"{% endif %} href="{% url 'account_login' %}">Members</a></li>
             {% endif %}
+            <li><a {% if 'about' in request.path %}class="active"{% endif %} href="{% url 'about' %}">About FYR</a></li>
+            <li><a {% if 'contact' in request.path %}class="active"{% endif %} href="{% url 'contact' %}">Contact Us</a></li>
+            
           </ul>
           <!-- Mobile Menu End -->
 
@@ -210,7 +207,70 @@
         <!-- End Header Logo & Navigation -->
       </header>
       <!-- End Header Section -->
+      {% else %}
+      <!-- Main Slider Section -->
+<section id="slider">
+  <div class="tp-banner-container">
+    <div class="tp-banner">
+      <ul>
+        <li data-transition="zoomout" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="{% static 'images/slider/bg4.jpg' %}" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="on">
+          <!-- MAIN IMAGE -->
+          <img src="{% static 'images/FyrHome.jpg' %}" alt="laptopmockup_sliderdy" data-lazyload="{% static 'images/FyrHome.jpg' %}">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- Main Slider Section End-->
 
+<!-- Start Services Section -->
+<div class="section service">
+  <div class="container">
+    <div class="row">
+
+      <!-- Start Service Icon 1 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="01">
+        <div class="service-icon">
+          <i class="fa fa-leaf icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Stuff Eventually</h4>
+          <p>I wonder if stuff will ever actually be here or if I am just lying. Yep, turns out I am just lying.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 1 -->
+
+      <!-- Start Service Icon 2 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="02">
+        <div class="service-icon">
+          <i class="fa fa-desktop icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Seriously it is coming</h4>
+          <p>I'm not really that serious about putting content here. Maybe some quotes from It's Always Sunny.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 2 -->
+
+      <!-- Start Service Icon 3 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="03">
+        <div class="service-icon">
+          <i class="fa fa-eye icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Maybe just some cat pictures</h4>
+          <p>I have tons of cat pictures I can share with you. Ok, I'm lying, Angel already shares tons of cat pictures with you.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 3 -->
+    </div>
+    <!-- .row -->
+  </div>
+  <!-- .container -->
+</div>
+{% endif %}
+<!-- End Services Section -->
+      {% if request.user.profile.account_verified %}
       <!-- Full Body Container -->
       <div id="container">
         {% block content %}{% endblock %}
@@ -226,13 +286,14 @@
             <div class="col-md-3 col-xs-12">
               <div class="footer-widget mail-subscribe-widget">
                 <h4>Get in touch<span class="head-line"></span></h4>
-                <p>Join our mailing list to stay up to date and get notices about our random stuff!</p><br> 
+                <p>Join our mailing list to stay up to date and get notices about our random stuff!</p>
+                <p>Though, right now we don't have a newsletter. So you'd be signing up just to help test the site. <br> 
                 <a id="subscribe" class="btn btn-medium btn-system">Subscribe</a>
               </div>
-              <!-- <div class="footer-widget social-widget">
+              <div class="footer-widget social-widget">
                 <h4>Follow Us<span class="head-line"></span></h4>
                 <ul class="social-icons">
-                  <li>
+                  <!--<li>
                     <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
                   </li>
                   <li>
@@ -252,32 +313,62 @@
                   </li>
                   <li>
                     <a class="tumblr" href="#"><i class="fa fa-tumblr"></i></a>
-                  </li>
+                  </li> -->
                   <li>
-                    <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
+                    <a class="instgram" href="https://www.instagram.com/fyrcrew/"><i class="fa fa-instagram"></i></a>
                   </li>
-                  <li>
+                 <!-- <li>
                     <a class="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a>
                   </li>
                   <li>
                     <a class="skype" href="#"><i class="fa fa-skype"></i></a>
-                  </li>
+                  </li> -->
                 </ul>
-              </div> -->
+              </div>
             </div> 
             <!-- .col-md-3 -->
             <!-- End Subscribe & Social Links Widget -->
-
+            <!-- Start Flickr Widget -->
+          <div class="col-md-3">
+            <div class="footer-widget flickr-widget">
+              <h4>Instagram Feed<span class="head-line"></span></h4>
+              <ul class="flickr-list">
+                <div id="instafeed"></div>
+              </ul>
+            </div>
+          </div>
+          <!-- Start Twitter Widget -->
+          <div class="col-md-3">
+            <div class="footer-widget twitter-widget">
+              <h4>Twitter Feed<span class="head-line"></span></h4>
+              <ul>
+                <li>
+                  <p><a href="#">@FYRCrew </a> Looks like we need to get a twitter account as well.</p>
+                  <span>5 May 2017</span>
+                </li>
+                <li>
+                  <p><a href="#">@FYRCrew </a> But who will run the twitter account?.</p>
+                  <span>5 May 2017</span>
+                </li>
+                <li>
+                  <p><a href="#">@FYRCrew </a> Has to be the funniest people of all of FYR.</p>
+                  <span>5 May 2017</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .col-md-3 -->
+          <!-- End Twitter Widget -->
             <!-- Start Contact Widget -->
             <div class="col-md-3 col-xs-12">
               <div class="footer-widget contact-widget">
-               <!-- <h4><img src="{% static 'images/footer-margo.png' %}" class="img-responsive" alt="Footer Logo" /></h4>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
-                <ul>
-                  <li><span>Phone Number:</span> 817-946-1283</li>
-                  <li><span>Email:</span> info@fyrpresents.com</li>
-                  <li><span>Website:</span> www.fyrpresents.com</li>
-                </ul>
+              <h4><img src="{% static 'images/FyrLogoSmall.png' %}" class="img-responsive" alt="Footer Logo" /></h4>
+              <p>We are FYR. Don't tell us to not do something, because that will just make us want to do it. There is no time to have a bad time when together.</p>
+              <ul>
+                <li><span>Phone Number:</span> 817-946-1283</li>
+                <li><span>Email:</span> info@fyrpresents.com</li>
+                <li><span>Website:</span> www.fyrpresents.com</li>
+              </ul>
               </div>
             </div>
             <!-- .col-md-3 -->
@@ -293,7 +384,7 @@
               <!-- .col-md-6 -->
               <div class="col-md-6">
                 <ul class="footer-nav">
-                  <li><a href="#">Sitemap</a>
+                  <li><a href="/sitemap.xml">Sitemap</a>
                   </li>
                   <li><a href="#">Privacy Policy</a>
                   </li>
@@ -313,7 +404,7 @@
       <!-- End Footer Section -->
     </div>
     <!-- End Full Body Container -->
-
+    {% endif %}
     <!-- Go To Top Link -->
     <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 

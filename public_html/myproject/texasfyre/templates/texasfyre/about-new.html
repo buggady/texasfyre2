@@ -1,0 +1,509 @@
+{% extends 'texasfyre/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans "About Us" %}{% endblock title %}
+{% block content %}
+
+<header class="clearfix" id="headerInsert"></header>
+<!-- End Header -->
+
+<!-- Start Page Banner -->
+<div class="page-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>About US</h2>
+        <p>Learn Something!</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="breadcrumbs">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Content -->
+<div id="content">
+  <div class="container">
+    <div class="page-content">
+      <div class="row">
+        <div class="col-md-7">
+          <!-- Classic Heading -->
+          <h4 class="classic-title"><span>Stuff about us</span></h4>
+          <!-- Some Text -->
+          <p>This used to have that standard text, everyone kept thinking it was french so we decided to change it so you would leave us alone. Imagine we have some creative stuff written here, it is the best we can do. </p>
+          <p>We tend to do stuff and have a great time doing it. We are spread all across Texas and have friends. More stuff is here and then maybe even a bit more.</p>
+        </div>
+        <div class="col-md-5">
+
+        <!-- Start Touch Slider -->
+        <!--<div class="touch-slider" data-slider-navigation="true" data-slider-pagination="true"> -->
+        <div class="item"><img alt="" src="{% static 'images/euphoria-2017-group.jpg' %}"></div>
+        <!--</div> -->
+        <!-- End Touch Slider -->
+      </div>
+      <div class="recent-projects">
+        <h4 class="title"><span>Our Collaborators</span></h4>
+        <div class="portfolio-page portfolio-1column">
+        <!-- Start Recent Projects Carousel -->
+          <ul id="portfolio-list" data-animated="fadeIn">
+            {% for i in "xxxxxxxxxx" %}
+            <li>
+              <img src="{% static 'images/helper.jpg' %}" alt="" />
+              <div class="portfolio-item-content">
+                <span class="header">Cats are awesome</span>
+                <p class="body animated">They really are</p>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Start Page Banner -->
+    <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Services</h2>
+            <p>We Are Professional</p>
+          </div>
+          <div class="col-md-6">
+            <ul class="breadcrumbs">
+              <li><a href="#">Home</a></li>
+              <li>Services</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Banner -->
+
+
+    <!-- Start Content -->
+    <div id="content">
+      <div class="container">
+        <div class="page-content">
+
+
+          <div class="row">
+
+            <!-- Start Image Service Box 1 -->
+            <div class="col-md-4 image-service-box">
+              <img class="img-thumbnail" src="images/service-01.jpg" alt="" />
+              <h4>Clean Modern Code</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis quasi architect.</p>
+            </div>
+            <!-- End Image Service Box 1 -->
+
+            <!-- Start Image Service Box 2 -->
+            <div class="col-md-4 image-service-box">
+              <img class="img-thumbnail" src="images/service-02.jpg" alt="" />
+              <h4>Great Support</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis quasi architect.</p>
+            </div>
+            <!-- End Image Service Box 2 -->
+
+            <!-- Start Image Service Box 3 -->
+            <div class="col-md-4 image-service-box">
+              <img class="img-thumbnail" src="images/service-03.jpg" alt="" />
+              <h4>High Quality Theme</h4>
+              <p>Sed ut perspiciatis unde omnis iste natus error voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis quasi architect.</p>
+            </div>
+            <!-- End Image Service Box 3 -->
+
+          </div>
+
+          <!-- Divider -->
+          <div class="hr1" style="margin-bottom:45px;"></div>
+
+          <div class="row">
+
+            <div class="col-md-4">
+
+              <!-- Classic Heading -->
+              <h4 class="classic-title"><span>We Aare Awesome</span></h4>
+
+              <!-- Accordion -->
+              <div class="panel-group" id="accordion">
+
+                <!-- Start Accordion 1 -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-one">
+                        <i class="fa fa-angle-up control-icon"></i>
+                        <i class="fa fa-desktop"></i> Fully Responsive Theme
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse-one" class="panel-collapse collapse in">
+                    <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ea commodo consequat. Duis aute irure dolor in reprehe in voluptate velit esse cillum dolore fugiat nulla pariatur.</div>
+                  </div>
+                </div>
+                <!-- End Accordion 1 -->
+
+                <!-- Start Accordion 2 -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-tow" class="collapsed">
+                        <i class="fa fa-angle-up control-icon"></i>
+                        <i class="fa fa-gift"></i> Touchable Slider
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse-tow" class="panel-collapse collapse">
+                    <div class="panel-body">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The point of using Lorem Ipsum is that it has a <strong>more-or-less</strong> normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore...</div>
+                  </div>
+                </div>
+                <!-- End Accordion 2 -->
+
+                <!-- Start Accordion 3 -->
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a data-toggle="collapse" data-parent="#accordion" href="#collapse-three" class="collapsed">
+                        <i class="fa fa-angle-up control-icon"></i>
+                        <i class="fa fa-tint"></i> Retina Ready
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="collapse-three" class="panel-collapse collapse">
+                    <div class="panel-body"><strong>Duis</strong> aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore...</div>
+                  </div>
+                </div>
+                <!-- End Accordion 3 -->
+
+              </div>
+              <!-- End Accordion -->
+
+            </div>
+
+            <div class="col-md-8">
+
+              <!-- Classic Heading -->
+              <h4 class="classic-title"><span>Our Features</span></h4>
+
+              <div class="row">
+
+                <!-- Start Service Icon 1 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-magic icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Photoshop</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 1 -->
+
+                <!-- Start Service Icon 2 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-users icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Web Marketing</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 2 -->
+
+                <!-- Start Service Icon 3 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-globe icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Web Hosting</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 3 -->
+
+                <!-- Start Service Icon 4 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-picture-o icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Phtography</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 4 -->
+
+                <!-- Start Service Icon 5 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-leaf icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Product Design</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 5 -->
+
+                <!-- Start Service Icon 6 -->
+                <div class="col-md-6 service-box service-icon-left-more">
+                  <div class="service-icon">
+                    <i class="fa fa-umbrella icon-medium"></i>
+                  </div>
+                  <div class="service-content">
+                    <h4>Supporting</h4>
+                    <p>It is a long <strong class="accent-color">established</strong> fact that a reader will be distracted by the readable content of a page.</p>
+                  </div>
+                </div>
+                <!-- End Service Icon 6 -->
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Divider -->
+          <div class="hr1" style="margin-bottom:25px;"></div>
+
+          <div class="row">
+
+            <div class="col-md-8">
+
+              <!-- Start Clients Carousel -->
+              <div class="our-clients">
+
+                <!-- Classic Heading -->
+                <h4 class="classic-title"><span>Our Clients</span></h4>
+
+                <div class="clients-carousel custom-carousel touch-carousel" data-appeared-items="4">
+
+                  <!-- Client 1 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c1.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 2 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c2.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 3 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c3.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 4 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c4.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 5 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c5.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 6 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c6.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 7 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c7.png" alt="" /></a>
+                  </div>
+
+                  <!-- Client 8 -->
+                  <div class="client-item item">
+                    <a href="#"><img src="images/c8.png" alt="" /></a>
+                  </div>
+
+                </div>
+              </div>
+              <!-- End Clients Carousel -->
+
+            </div>
+
+            <div class="col-md-4">
+
+              <!-- Classic Heading -->
+              <h4 class="classic-title"><span>Client Testimonials</span></h4>
+
+              <!-- Start Testimonials Carousel -->
+              <div class="custom-carousel show-one-slide touch-carousel" data-appeared-items="1">
+                <!-- Testimonial 1 -->
+                <div class="classic-testimonials item">
+                  <div class="testimonial-content">
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum.</p>
+                  </div>
+                  <div class="testimonial-author"><span>John Doe</span> - Customer</div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="classic-testimonials item">
+                  <div class="testimonial-content">
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum.</p>
+                  </div>
+                  <div class="testimonial-author"><span>John Doe</span> - Customer</div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="classic-testimonials item">
+                  <div class="testimonial-content">
+                    <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim laborum.</p>
+                  </div>
+                  <div class="testimonial-author"><span>John Doe</span> - Customer</div>
+                </div>
+              </div>
+              <!-- End Testimonials Carousel -->
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- End Content -->
+
+
+    <!-- Start Footer -->
+    <footer>
+      <div class="container">
+        <div class="row footer-widgets">
+
+          <!-- Start Subscribe & Social Links Widget -->
+          <div class="col-md-3">
+            <div class="footer-widget mail-subscribe-widget">
+              <h4>Get in touch<span class="head-line"></span></h4>
+              <p>Join our mailing list to stay up to date and get notices about our new releases!</p>
+              <form class="subscribe">
+                <input type="text" placeholder="mail@example.com">
+                <input type="submit" class="btn-system" value="Send">
+              </form>
+            </div>
+            <div class="footer-widget social-widget">
+              <h4>Follow Us<span class="head-line"></span></h4>
+              <ul class="social-icons">
+                <li>
+                  <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
+                </li>
+                <li>
+                  <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
+                </li>
+                <li>
+                  <a class="linkdin" href="#"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
+                </li>
+                <li>
+                  <a class="tumblr" href="#"><i class="fa fa-tumblr"></i></a>
+                </li>
+                <li>
+                  <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
+                </li>
+                <li>
+                  <a class="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a>
+                </li>
+                <li>
+                  <a class="skype" href="#"><i class="fa fa-skype"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .col-md-3 -->
+          <!-- End Subscribe & Social Links Widget -->
+
+
+          <!-- Start Twitter Widget -->
+          <div class="col-md-3">
+            <div class="footer-widget twitter-widget">
+              <h4>Twitter Feed<span class="head-line"></span></h4>
+              <ul>
+                <li>
+                  <p><a href="#">@GrayGrids </a> Lorem ipsum dolor et, consectetur adipiscing eli.</p>
+                  <span>28 February 2016</span>
+                </li>
+                <li>
+                  <p><a href="#">@GrayGrids </a> Lorem ipsum dolor et, consectetur adipiscing eli.An Fusce eleifend aliquet nis application.</p>
+                  <span>26 February 2016</span>
+                </li>
+                <li>
+                  <p><a href="#">@GrayGrids </a> Lorem ipsum dolor et, consectetur adipiscing eli.</p>
+                  <span>28 February 2016</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- .col-md-3 -->
+          <!-- End Twitter Widget -->
+
+
+          <!-- Start Flickr Widget -->
+          <div class="col-md-3">
+            <div class="footer-widget flickr-widget">
+              <h4>Flicker Feed<span class="head-line"></span></h4>
+              <ul class="flickr-list">
+                <li>
+                  <a href="images/flickr-01.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-01.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-02.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-02.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-03.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-03.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-04.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-04.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-05.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-05.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-06.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-06.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-07.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-07.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-08.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-08.jpg">
+                  </a>
+                </li>
+                <li>
+                  <a href="images/flickr-09.jpg" class="lightbox">
+                    <img alt="" src="images/flickr-09.jpg">
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+  </div>
+</div>
+{% endblock %}

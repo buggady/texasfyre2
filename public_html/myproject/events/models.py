@@ -22,6 +22,7 @@ class Event(models.Model):
     category = models.CharField(max_length=14, choices=CATEGORY_CHOICES, default='general')
     start_date = models.DateTimeField(null=True)
     end_date = models.DateTimeField(null=True)
+    location = models.CharField(max_length=140, default="Don't Know")
     total_price = models.IntegerField(default="0")
     host = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     slug = AutoSlugField(populate_from='title', editable=True)

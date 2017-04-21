@@ -39,13 +39,11 @@
       <div class="project-page row">
         <!-- Start Single Project Slider -->
         <div class="project-media col-md-8">
-          <div class="touch-slider project-slider">
-          	<div class="item">
-              <a class="lightbox" title="Amazing Time at {{event.title}}" href="{% static image_static %}.jpg" data-lightbox-gallery="gallery2">
-                <!--<div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>-->
-                <img alt="" src="{% static image_static %}.jpg" style="width:100%;">
-              </a>
-            </div>
+        	<div class="item">
+            <a class="lightbox crop" title="{{event.title}}" href="{% static image_static %}.jpg" data-lightbox-gallery="gallery2">
+              <!--<div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>-->
+              <img alt="" src="{% static image_static %}.jpg" style="width:100%;">
+            </a>
           </div>
         </div>
         <!-- End Single Project Slider -->
@@ -57,15 +55,15 @@
           <ul> 
             <li><strong>Date:</strong> {{ event.start_date|date }}</li>
             <li><strong>Host:</strong> {{ event.host.first_name }}</li>
-            <li><strong>Location:</strong> Somewhere</li>
+            <li><strong>Location:</strong> {{ event.location }}</li>
             {% if not event.in_the_past %}
             <li><strong>Total Price:</strong> ${{event.total_price}}</li>
             <li>
               {% if request.user.is_authenticated %}
                 {% if not is_current_user_registered %}
-                  <a href="{% url 'rsvp_to_event' event.id %}" class="btn btn-system">Register</a>
+                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Sign up</a>
                 {% else %}
-                  <p>You are going to this event. Good Luck!</p>
+                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Remove Me</a>
                 {% endif %}
               {% endif %}
             </li>
@@ -73,9 +71,9 @@
              <li>
               {% if request.user.is_authenticated %}
                 {% if not is_current_user_registered %}
-                  <a href="{% url 'rsvp_to_event' event.id %}" class="btn btn-system">Click if you went</a>
+                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">I attended this</a>
                 {% else %}
-                  <p>Looks like you were approved!</p>
+                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Remove Me</a>
                 {% endif %}
               {% endif %}
             </li> 
@@ -94,19 +92,18 @@
         {% endwith %}
       </div>
        <!-- Start Recent Projects Carousel -->
-    {% if is_current_user_registered %}
     <h4 class="title"><span>Guest List</span></h4>
+    {% if is_current_user_registered %}
     <!-- Start Team Members -->
     <div class="row">
       {% for guest in event.guest_list %}
       <!-- Start Member 1 -->
       <div class="col-md-2 col-sm-6 col-xs-3">
-        <div class="team-member" >
-          <!-- Memebr Photo, Name & Position -->
-          <div class="member-photo">
+        <!--<div class="team-member"> -->
+          <!-- Member Photo, Name & Position -->
+          <!-- <div class="member-photo"> -->
             <img src="{{ guest.user.profile.profile_image_url }}" alt="User Profile Picture"/>
-            <div class="member-name">{{guest.user.first_name}} {{guest.user.last_name}}</div>
-          </div>
+            <!--<div class="member-name">{{guest.user.first_name}} {{guest.user.last_name}}</div>-->
           <!-- Memebr Words -->
           <!-- <div class="member-info">
             <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat.</p>
@@ -119,12 +116,25 @@
             <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
             <a class="mail" href="#"><i class="fa fa-envelope"></i></a>
           </div> -->
-        </div>
+        <!--</div> -->
       </div>
       <!-- End Member 1 -->
       {% endfor %}
     </div>
+    <h4 class="title"><span>Event Photos</span></h4>
+      <div class="row">
+      {% for photo in event.gallery.sample %}
+        <div class="col-md-2 col-sm-6 col-xs-3">
+          <a href="{{ photo.get_absolute_url }}">
+           <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+          </a>
+        </div>
+      {% endfor %}
+      </div>
+      <a href="{{event.gallery.get_absolute_url}}" class="btn btn-system">View full gallery</a>
     <!-- End Team Members -->
+    {% else %}
+    <p>Ain't no one going</p>
     {% endif %}
     </div>
    

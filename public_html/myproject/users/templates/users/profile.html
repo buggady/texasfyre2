@@ -68,19 +68,10 @@
           <li><strong>Name:</strong> {{ request.user.first_name}} {{ request.user.last_name}}</li>
           <li><strong>Home Town:</strong> {{ request.user.profile.home_town}}</li>
         </ul>
-        <h4><span>Top Friends</span></h4>
+        <h4><span>Best Travel Buddies</span></h4>
         <div class="row" style="margin-bottom:20px">
-          {% for i in "xxxx" %}
-            <div class="col-sm-3">
-              <img src="{{ request.user.profile.profile_image_url }}"/>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="row">
-          {% for i in "xxxx" %}
-            <div class="col-sm-3">
-              <img src="{{ request.user.profile.profile_image_url }}"/>
-            </div>
+          {% for friend in request.user.profile.top_friends|slice:"1:" %}
+             <img src="{{ friend.profile.profile_image_url_small }}" alt="User Profile Picture"/>
           {% endfor %}
         </div>
       </div>
@@ -90,16 +81,17 @@
 
     <!-- Start Recent Projects Carousel -->
     <div class="recent-projects">
-      <h4 class="title"><span>Stuff you did</span></h4>
+      <h4 class="title"><span>You signed up for this</span></h4>
       <div class="projects-carousel touch-carousel">
-      	{% for eventuserrel in object_list %}
-        		<div class="portfolio-item item">
+        {% for eventuserrel in object_list %}
+        {% if not eventuserrel.event.in_the_past %}
+            <div class="portfolio-item item">
             <div class="portfolio-border">
               <div class="portfolio-thumb" style="height:200px">
-              	{% with 'events/images/'|add:eventuserrel.event.slug|add:'.jpg' as image_static %}
+                {% with 'events/images/'|add:eventuserrel.event.slug|add:'.jpg' as image_static %}
                 <a href="{% url 'user_event_details' eventuserrel.id %}">
                 <!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
-                  <div class="thumb-overlay"><i class="fa fa-play"></i></div>
+                  <div class="thumb-overlay"></div>
                   <img src="{% static image_static %}" alt="" />
                 </a>
                 {% endwith %}
@@ -112,6 +104,37 @@
               </div>
             </div>
          </div>
+         {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    <!-- End Recent Projects Carousel -->
+    <!-- Start Recent Projects Carousel -->
+    <div class="recent-projects">
+      <h4 class="title"><span>Stuff you did</span></h4>
+      <div class="projects-carousel touch-carousel">
+      	{% for eventuserrel in object_list %}
+        {% if eventuserrel.event.in_the_past %}
+        		<div class="portfolio-item item">
+            <div class="portfolio-border">
+              <div class="portfolio-thumb" style="height:200px">
+              	{% with 'events/images/'|add:eventuserrel.event.slug|add:'.jpg' as image_static %}
+                <a href="{% url 'user_event_details' eventuserrel.id %}">
+                <!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
+                  <div class="thumb-overlay"></div>
+                  <img src="{% static image_static %}" alt="" />
+                </a>
+                {% endwith %}
+              </div>
+              <div class="portfolio-details">
+                <a href="#">
+                  <h4>{{eventuserrel.event.title}}</h4>
+                  <span>{{eventuserrel.event.start_date|date}}</span>
+                </a>
+              </div>
+            </div>
+         </div>
+         {% endif %}
         {% endfor %}
       </div>
     </div>
@@ -119,6 +142,6 @@
   </div>
 </div>
 <!-- End Content -->
-{% else %} Go away, this page isn't ready {% endif %} 
+{% else %} Wait a minutes, you aren't supposed to be here. Stop trying to hack this site. {% endif %} 
 {% endblock %}
 

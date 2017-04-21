@@ -37,14 +37,15 @@ INSTALLED_APPS = [
     'mingle',
     'mathfilters',
     'crispy_forms',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.instagram',
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu', 
     'newsletter',
     'vote',
     'djstripe',
@@ -53,6 +54,9 @@ INSTALLED_APPS = [
     'taggit',
     'compressor',
     'widget_tweaks',
+    'django.contrib.sites',
+    'django.contrib.auth',
+    'django.contrib.admin',
     'django.contrib.flatpages',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -81,7 +85,6 @@ TEMPLATES = [
         'DIRS': [
 		    BASE_DIR + '/templates/',
 	    ],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -89,12 +92,17 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 		        'django.core.context_processors.i18n',
-		
+		        
 		        'oscar.apps.search.context_processors.search_form',
                 'oscar.apps.promotions.context_processors.promotions',
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.apps.customer.notifications.context_processors.notifications',
                 'oscar.core.context_processors.metadata',
+            ],
+            'loaders': [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                    'admin_tools.template_loaders.Loader',
             ],
         },
     },
@@ -189,7 +197,7 @@ DJSTRIPE_PLANS = {
     }
 }
 
-PHOTOLOGUE_GALLERY_SAMPLE_SIZE=6
+PHOTOLOGUE_GALLERY_SAMPLE_SIZE=10
 
 OSCAR_INITIAL_ORDER_STATUS = 'Pending'
 OSCAR_INITIAL_LINE_STATUS = 'Pending'
