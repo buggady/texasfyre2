@@ -9,14 +9,18 @@ import hashlib
 class UserProfile(models.Model):
 
 	user = models.OneToOneField(User, related_name='profile')
-	home_town = models.CharField(max_length=140, default='unknown')
-	theme_color = models.CharField(max_length=10, default='blue')
+	#home_town = models.CharField(max_length=140, default='unknown', blank=True, null=True)
+	#theme_color = models.CharField(max_length=10, default='blue')
  
 	def __unicode__(self):
 		return "{}'s profile".format(self.user.username)
  
 	class Meta:
 		db_table = 'user_profile'
+		permissions = (
+            ("fyr_member", "FYR Approved members"),
+            ("fyr_developer", "FYR Developers")
+        )
  
 	#email verification
 	def account_verified(self):
@@ -48,6 +52,5 @@ class UserProfile(models.Model):
 			return "http://graph.facebook.com/{}/picture?width=80&height=80".format(fb_uid[0].uid)
 	 
 		return "http://www.gravatar.com/avatar/{}?s=140".format(hashlib.md5(self.user.email).hexdigest())
-
 
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

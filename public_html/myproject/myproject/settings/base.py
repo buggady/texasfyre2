@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2eq6j1*m@gf1x*a*(ydq#br$_!okj6!xglccm7knj7b(y1_0e$'
+SECRET_KEY = os.environ.get('SECRET_KEY', '2eq6j1*m@gf1x*a*(ydq#br$_!okj6!xglccm7knj7b(y1_0e$')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'texasfyre',
+    'fyrpresents',
     'events',
     'users',
     'mingle',
@@ -46,14 +46,20 @@ INSTALLED_APPS = [
     'admin_tools',
     'admin_tools.theming',
     'admin_tools.menu', 
+    'facebook_sdk',
     'newsletter',
     'vote',
-    'djstripe',
     'photologue',
     'sortedm2m',
     'taggit',
     'compressor',
     'widget_tweaks',
+    'django_comments',
+    'mptt',
+    'tagging',
+    'zinnia',
+    'schedule',
+    'annoying',
     'django.contrib.sites',
     'django.contrib.auth',
     'django.contrib.admin',
@@ -98,11 +104,17 @@ TEMPLATES = [
                 'oscar.apps.checkout.context_processors.checkout',
                 'oscar.apps.customer.notifications.context_processors.notifications',
                 'oscar.core.context_processors.metadata',
+
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.request',
+                'django.contrib.messages.context_processors.messages',
+                'zinnia.context_processors.version',  # Optional
             ],
             'loaders': [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                    'admin_tools.template_loaders.Loader',
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                'admin_tools.template_loaders.Loader',
             ],
         },
     },
@@ -115,9 +127,10 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'ATOMIC_REQUESTS': True,
+        'ENGINE': 'django.db.backends.mysql', 
+        'OPTIONS': {
+            'read_default_file': '/home/texasfyr/etc/my.cnf',
+        },
     }
 }
 
@@ -158,44 +171,22 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-SITE_ID = 1
+SITE_ID = 2
 
 LOGIN_REDIRECT_URL='/home/'
+SOCIALACCOUNT_QUERY_EMAIL = True
 
 CRISPY_TEMPLATE_PACK='bootstrap3'
 
+EMAIL_BACKEND = 'django_sendmail_backend.backends.EmailBackend'
 EMAIL_USE_SSL = True
 EMAIL_HOST = 'box1156.bluehost.com'
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = 'info@fyrpresents.com'
 EMAIL_PORT = 465
 
 NEWSLETTER_CONFIRM_EMAIL = False
-
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
-
-DJSTRIPE_INVOICE_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
-DJSTRIPE_SEND_INVOICE_RECEIPT_EMAILS = False
-
-DJSTRIPE_PLANS = {
-    "monthly": {
-        "stripe_plan_id": "pro-monthly",
-        "name": "Web App Pro ($25/month)",
-        "description": "The monthly subscription plan to WebApp",
-        "price": 2500,  # $25.00
-        "currency": "usd",
-        "interval": "month"
-    },
-    "yearly": {
-        "stripe_plan_id": "pro-yearly",
-        "name": "Web App Pro ($199/year)",
-        "description": "The annual subscription plan to WebApp",
-        "price": 19900,  # $199.00
-        "currency": "usd",
-        "interval": "year"
-    }
-}
 
 PHOTOLOGUE_GALLERY_SAMPLE_SIZE=10
 

@@ -1,4 +1,4 @@
-{% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
 
 {% block content %}
 	{% if messages %}
@@ -11,9 +11,14 @@
 	  </ul>
 	</div>
 	{% endif %}
-
+	<div id="content">
+  <div class="container">
+    <div class="row">
 	{% block subcontent %}
 	{% endblock %}
+    </div>
+  </div>
+</div>
 {% endblock %}
 {% block extra_body %}
 {% endblock %}

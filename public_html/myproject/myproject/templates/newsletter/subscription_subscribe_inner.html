@@ -4,7 +4,7 @@
 <h4 class="classic-title" style="margin-top:0px"><span>{% trans "Newsletter Subscribe" %}<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></span></h4>
 {% if error %}
     <p>{% trans "Due to a technical error we were not able to submit your confirmation email. This could be because your email address is invalid." %}</p>
-    <p>{% trans "If the error persists, please don't hesitate to contact us at the following email address:" %} <a href="mailto:info@texasfyre.com">info@texasfyre.com</a></p>
+    <p>{% trans "If the error persists, please don't hesitate to contact us at the following email address:" %} <a href="mailto:info@fyrpresents.com">info@fyrpresents.com</a></p>
 {% else %}
     <form enctype="multipart/form-data" method="post" action=".">
         {% csrf_token %}

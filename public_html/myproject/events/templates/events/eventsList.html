@@ -1,8 +1,10 @@
-{% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
 {% load i18n %}
 {% load static %}
 {% block title %}{% trans "Events" %}{% endblock title %}
 {% block content %}
+{% load random_rp_image %}
+{% load random_color %}
 
 <!-- Full Body Container -->
 <div id="container">
@@ -28,80 +30,99 @@
     <!-- Start Content -->
   	<div id="content">
     	<div class="container">
-    		<div class="recent-projects">
+			<div class="row">
+    			<div class="col-md-7">
+     				<!-- Classic Heading -->
+      				<h4 class="classic-title"><span>Adventuring Through Life</span></h4>
+      				<!-- Some Text -->
+      				<p>It seems every weekend, FYR members have some planned events they are attending or hosting or discussing. Big events are usually planned several months ahead so as to give everyone enough time to gather funds and pool resources to find the optimal means of completing the adventure. On this page, I hope to help simplify our event planning by allowing members to submit their event ideas and intentions. In the near future, a payment system will be added so as to have all stages of our event planning in one area.   </p>
+      				<div class="message-box gradient-{% random_color %} col-md-5">
+      					<h5 class="classic-title"><span>For FYR Only</span></h5>
+      					Have an idea for a new event? A new place to visit? An adventure? Want to host something? Together, lets adventure through all the weird! Fill out <code><a href="{% url 'submit_event_idea' %}"> <strong>this form</strong></a></code> and we can let everyone argue about it.
+      				</div>
+    			</div>
+    			<div class="col-md-5">
+      				<div class="item"><img alt="" src="{% static 'images/euphoria-2017-group.jpg' %}"></div>
+    			</div>
+    		<!-- End Touch Slider -->
+  			</div>
+      		<div class="recent-projects" style="padding-top:100px">
 				<h4 class="title"><span>Our Upcoming Events</span></h4>
 		  		<div class="portfolio-page portfolio-3column">
 					<!-- Start Recent Projects Carousel -->
 		    		<ul id="portfolio-list" data-animated="fadeIn">
 		    	    	{% for event in object_list %}
-		            	{% if not event.in_the_past %}
+		            	{% if not event.profile.in_the_past %}
 		    	    	<li>
-		    	    		{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
+		    	    		{% if not event.profile.slug = 'raver-paradise-2017' %}
+		    	    		{% with 'events/images/'|add:event.profile.slug|add:'.jpg' as image_static %}
 		      				<div class="crop">
 		            			<img src="{% static image_static %}" alt="" />
 		            		</div>
 		                	<div class="portfolio-item-content">
 		                		<span class="header">{{event.title}}</span>
-		                		<p class="body animated8">{{event.start_date|date}}</p>
+		                		<p class="body animated8">{{event.start|date}}</p>
 		                	</div>
 		                	<div class="icon-list">
-		                		{% if request.user.profile.account_verified %}
-		                		<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
-		                		{% endif %}
+		                		<a class="link" href="{% url 'eventdetails' event.profile.slug %}"><i class="fa fa-link"></i></a>
 		                  		<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
 		                	</div> 
 		                	{% endwith %}
+		                	{% else %}
+		                	<div class="crop">
+		            			<img src="{% random_rp_image 'events/images/raver-paradise-2017' %}" alt="" />
+		            		</div>
+		                	<div class="portfolio-item-content">
+		                		<span class="header">{{event.title}}</span>
+		                		<p class="body animated8">{{event.start|date}}</p>
+		                	</div>
+		                	<div class="icon-list">
+		                		<a class="link" href="{% url 'eventdetails' event.profile.slug %}"><i class="fa fa-link"></i></a>
+		                  		<a class="zoom lightbox" href="{% random_rp_image 'events/images/raver-paradise-2017' %}"><i class="fa fa-search-plus"></i></a>
+		                	</div> 
+		                	{% endif %}
 		              	</li>
 		            	{% endif %}
 		    			{% endfor %}
 					</ul>
 		      	</div>
 		    </div>
+		    <!-- Divider -->
+          
+          	<div class="hr5" style="margin-top:45px; margin-bottom:35px;"></div>
+
 		    <!-- Start Recent Projects Carousel -->
-		    <div class="recent-projects" style="padding-top:100px">
+		    <div class="recent-projects">
 		      	<h4 class="title"><span>Our Past Events</span></h4>
-		      	<div class="portfolio-page portfolio-4column">
-			      	<ul id="portfolio-list" data-animated="fadeIn">
-				      	{% for event in object_list %}
-				      	{% if event.in_the_past %}
-				      	<li>
-					      	<div class="portfolio-item item" style="margin-bottom:0px">
-						        <div class="portfolio-border">
-						            <div class="portfolio-thumb" style="height:200px">
-						               	{% with 'events/images/'|add:event.slug|add:'.jpg' as image_static %}
-						               	{% if request.user.profile.account_verified %}
-						              	<a href="{% url 'eventdetails' event.slug %}">
-						              	{% endif %}
-						              	<!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
-						                <!--<div class="thumb-overlay"><i class="fa fa-play"></i></div>-->
-						                	<img src="{% static image_static %}" alt="" />
-						              	</a>
-						              	{% endwith %}
-						            </div>
-						            <div class="portfolio-details">
-						                {% if request.user.profile.account_verified %}
-						                <a href="{% url 'eventdetails' event.slug %}">
-						                	<h4>{{event.title}}</h4>
-						                	<span>{{event.start_date|date}}</span>
-						                </a>
-						                {% endif %}
-						            </div>
-						        </div>
-						    </div>
-						    <div class="portfolio-item-content">
-	                			<span class="header">{{event.title}}</span>
-	                			<p class="body animated8">{{event.start_date|date}}</p>
-	                		</div>
-	                		<div class="icon-list">
-	                			{% if request.user.profile.account_verified %}
-	                			<a class="link" href="{% url 'eventdetails' event.slug %}"><i class="fa fa-link"></i></a>
-	                			{% endif %}
-	                  			<a class="zoom lightbox" href="{% static image_static %}"><i class="fa fa-search-plus"></i></a>
-	                		</div>
-						</li>
+		      	<div class="projects-carousel touch-carousel">
+				    {% for event in object_list %}
+				      	{% if event.profile.in_the_past %}
+				      		{% with 'events/images/'|add:event.profile.slug|add:'.jpg' as image_static %}
+						      	<div class="portfolio-item item">
+							        <div class="portfolio-border">
+							            <div class="portfolio-thumb" style="height:200px">	
+							              	<a class="lightbox" data-lightbox-type="ajax" href="{% url 'eventdetails' event.profile.slug %}">
+							              		<!--<a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
+							                	<div class="thumb-overlay"><i class="fa fa-play"></i></div>
+							                	<img src="{% static image_static %}" alt="" />
+							                </a>
+							            </div>
+							            <div class="portfolio-details">
+							                <a href="{% url 'eventdetails' event.profile.slug %}">
+							                	<h4>{{event.title}}</h4>
+							                	<span>{{event.start|date}}</span>
+							                </a>
+							                <a href="#" class="like-link"><i class="fa fa-user-secret fa-2"></i><span>{{event.profile.guest_count}}</span></a>
+							            </div>
+							        </div>
+							    </div>
+	                		{% endwith %}
 				    	{% endif %}
-				    	{% endfor %}
-			    	</ul>
+				    {% endfor %}
+			    	<div class="message-box gradient-{% random_color %}" >
+			    		<h5 class="classic-title"><span>For FYR Only</span></h5>
+			    		Am I missing an event that must be added to our list? Fill out <code><a href="{% url 'submit_past_event' %}"> <strong>this form</strong></a></code> and, like magic, it might just get added to list.
+			    	</div>
 		    	</div>
 		    </div>
 		</div>

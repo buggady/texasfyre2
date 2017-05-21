@@ -1,29 +1,23 @@
-  {% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
 {% load i18n %}
 {% load static %}
 {% block title %}{% trans "Event Details" %}{% endblock title %}
 {% block content %}
 <!-- Container -->
 <div id="container">
-  
-  <!-- Start Header -->
-  
-  <header class="clearfix" id="headerInsert"></header>
-  <!-- End Header -->
-
   <!-- Start Page Banner -->
   <div class="page-banner">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
-          <h2>{{event.title}}</h2>
-          <p>{{event.start_date|date}}</p>
+          <!--<h2>{{event.title}}</h2>
+          <p>{{event.start_date|date}}</p>-->
         </div>
         <div class="col-md-6">
           <ul class="breadcrumbs">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Events</a></li>
-            <li>{{event.title}}</li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="#">{{eventprofile.event.title}}</a></li>
           </ul>
         </div>
       </div>
@@ -31,39 +25,40 @@
   </div>
   <!-- End Page Banner -->
 
-  {% if request.user.profile.account_verified %}
-  {% with 'events/images/'|add:event.slug as image_static %}
-  <!-- Start Content -->
   <div id="content">
     <div class="container">
+      {% with 'events/images/'|add:eventprofile.slug as image_static %}
       <div class="project-page row">
         <!-- Start Single Project Slider -->
         <div class="project-media col-md-8">
-        	<div class="item">
-            <a class="lightbox crop" title="{{event.title}}" href="{% static image_static %}.jpg" data-lightbox-gallery="gallery2">
-              <!--<div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>-->
-              <img alt="" src="{% static image_static %}.jpg" style="width:100%;">
+          <div class="item crop">
+            <a href="{% static image_static %}.jpg">
+              <img alt="" src="{% static image_static %}.jpg">
             </a>
           </div>
         </div>
         <!-- End Single Project Slider -->
        <!-- Start Project Content -->
         <div class="project-content col-md-4">
-          <h4><span>What's Going On</span></h4>
-          <p>{{event.description|safe|linebreaks}}</p>
+          <h4><span>Public Information</span></h4>
+          {% if eventprofile.facebook_event_id %}
+            <p>{{ fb_description }}</p>
+            <a href="{{eventprofile.fb_page}}" class="btn btn-block btn-social btn-facebook" style="width:130px" target="_blank">
+            <span class="fa fa-facebook"></span> Event Page</a>
+          {% endif %}
           <h4><span>Details</span></h4>
           <ul> 
-            <li><strong>Date:</strong> {{ event.start_date|date }}</li>
-            <li><strong>Host:</strong> {{ event.host.first_name }}</li>
-            <li><strong>Location:</strong> {{ event.location }}</li>
-            {% if not event.in_the_past %}
-            <li><strong>Total Price:</strong> ${{event.total_price}}</li>
+            <li><strong>Date:</strong> {{ eventprofile.event.start|date }}</li>
+            <li><strong>Host:</strong> {{ eventprofile.host.first_name }}</li>
+            <li><strong>Location:</strong> {{ eventprofile.location }}</li>
+            {% if not eventprofile.in_the_past %}
+            <li><strong>Total Price:</strong> ${{eventprofile.total_price}}</li>
             <li>
               {% if request.user.is_authenticated %}
                 {% if not is_current_user_registered %}
-                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Sign up</a>
+                  <a href="{% url 'rsvp_to_event' eventprofile.slug %}" class="btn btn-system">Sign up</a>
                 {% else %}
-                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Remove Me</a>
+                  <a href="{% url 'rsvp_to_event' eventprofile.slug %}" class="btn btn-system">Remove Me</a>
                 {% endif %}
               {% endif %}
             </li>
@@ -71,9 +66,9 @@
              <li>
               {% if request.user.is_authenticated %}
                 {% if not is_current_user_registered %}
-                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">I attended this</a>
+                  <a href="{% url 'rsvp_to_event' eventprofile.slug %}" class="btn btn-system">I attended this</a>
                 {% else %}
-                  <a href="{% url 'rsvp_to_event' event.slug %}" class="btn btn-system">Remove Me</a>
+                  <a href="{% url 'rsvp_to_event' eventprofile.slug %}" class="btn btn-system">Remove Me</a>
                 {% endif %}
               {% endif %}
             </li> 
@@ -90,58 +85,72 @@
         </div>
         <!-- End Project Content -->
         {% endwith %}
-      </div>
-       <!-- Start Recent Projects Carousel -->
-    <h4 class="title"><span>Guest List</span></h4>
-    {% if is_current_user_registered %}
-    <!-- Start Team Members -->
-    <div class="row">
-      {% for guest in event.guest_list %}
-      <!-- Start Member 1 -->
-      <div class="col-md-2 col-sm-6 col-xs-3">
-        <!--<div class="team-member"> -->
-          <!-- Member Photo, Name & Position -->
-          <!-- <div class="member-photo"> -->
-            <img src="{{ guest.user.profile.profile_image_url }}" alt="User Profile Picture"/>
-            <!--<div class="member-name">{{guest.user.first_name}} {{guest.user.last_name}}</div>-->
-          <!-- Memebr Words -->
-          <!-- <div class="member-info">
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat.</p>
-          </div> -->
-          <!-- Memebr Social Links -->
-          <!--<div class="member-socail">
-            <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-            <a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
-            <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
-            <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
-            <a class="mail" href="#"><i class="fa fa-envelope"></i></a>
-          </div> -->
-        <!--</div> -->
-      </div>
-      <!-- End Member 1 -->
-      {% endfor %}
-    </div>
-    <h4 class="title"><span>Event Photos</span></h4>
-      <div class="row">
-      {% for photo in event.gallery.sample %}
-        <div class="col-md-2 col-sm-6 col-xs-3">
-          <a href="{{ photo.get_absolute_url }}">
-           <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
-          </a>
-        </div>
-      {% endfor %}
-      </div>
-      <a href="{{event.gallery.get_absolute_url}}" class="btn btn-system">View full gallery</a>
-    <!-- End Team Members -->
-    {% else %}
-    <p>Ain't no one going</p>
-    {% endif %}
-    </div>
-   
-  </div>
-  {% else %}
-      Go away
-  {% endif %}
-</div>
+    </div>  
 
+    <!-- Start Recent Projects Carousel -->
+    <h4 class="classic-title"><span>Guest List</span></h4>
+    {% if is_current_user_registered %}
+      <!-- Start Team Members -->
+      <div class="row">
+        {% for guest in eventprofile.guest_list %}
+        <!-- Start Member 1 -->
+        <div class="col-md-2 col-sm-6 col-xs-3">
+          <!--<div class="team-member"> -->
+            <!-- Member Photo, Name & Position -->
+            <!-- <div class="member-photo"> -->
+              <img src="{{ guest.user.profile.profile_image_url }}" alt="User Profile Picture"/>
+              <!--<div class="member-name">{{guest.user.first_name}} {{guest.user.last_name}}</div>-->
+            <!-- Memebr Words -->
+            <!-- <div class="member-info">
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore fugiat.</p>
+            </div> -->
+            <!-- Memebr Social Links -->
+            <!--<div class="member-socail">
+              <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+              <a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
+              <a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+              <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
+              <a class="mail" href="#"><i class="fa fa-envelope"></i></a>
+            </div> -->
+          <!--</div> -->
+        </div>
+        <!-- End Member 1 -->
+        {% endfor %}
+      </div>
+    
+      <h4 class="classic-title"><span>Event Photos</span></h4>
+      {% if eventprofile.gallery.photo_count > 0 %}
+        <div class="row">
+          {% for photo in eventprofile.gallery.sample %}
+            <div class="col-md-2 col-sm-6 col-xs-3">
+              <a href="{{ photo.get_absolute_url }}">
+               <img src="{{ photo.get_thumbnail_url }}" class="thumbnail" alt="{{ photo.title }}">
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+        <a href="{{ eventprofile.gallery.get_absolute_url }}" class="btn btn-system">View full gallery</a>
+      {% else %}
+        <p>Looks like there aren't any photos for this event. We are working to track down all the pictures lost in the depths of the internet.</p>
+        <p>If you would like to upload some pictures to the gallery, well, we should probably get that feature working for you</p>
+        <!-- End Team Members -->
+      {% endif %}
+        <br>
+        <p>Want to help us find all the missing pictures? </p><a href="{% url 'donate_photos' eventprofile.slug %}" class="btn btn-system">Donate some pictures</a>
+    {% else %}
+      <p>Sign up to see the guest list and some photos </p>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}  
+  
+{% block javascript %}
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=119227861825480";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+{% endblock %}

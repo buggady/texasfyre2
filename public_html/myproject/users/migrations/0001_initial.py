@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
             ],
             options={
                 'db_table': 'user_profile',
+                'permissions': (('fyr_member', 'FYR Approved members'), ('fyr_developer', 'FYR Developers')),
             },
         ),
     ]

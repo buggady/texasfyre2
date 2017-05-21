@@ -1,7 +1,6 @@
-{% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
+{% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}
 {% block extra_head %}
-    {% block title %}{{ shop_name }} - {{ shop_tagline }}{% endblock %}
-
     <meta name="created" content="{% now "jS M Y h:i" %}" />
     <meta name="robots" content="NOARCHIVE,NOCACHE" />
 

@@ -1,4 +1,4 @@
-{% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
 
 {% block content %}
 
@@ -16,7 +16,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6">
-        <h2>Your Event Information for {{eventuserrel.event.title}}</h2>
+        <h2>Your Event Information for {{event.title}}</h2>
         <p>Will have personal stuff about the event for you</p>
       </div>
       <div class="col-md-6">
@@ -40,15 +40,12 @@
       <!-- Start Profile Content -->
       <div class="project-content col-md-4">
         <h4><span id="fullname"></span></h4>
-        <p>Will try to fill this out with your account information related to this event</p>
+        <p>Will try to fill this out with your account information related to this event. Will do this later.</p>
         <h4><span>Event Info</span></h4>
         <ul>
-          <li><strong>Name: </strong>{{eventuserrel.event.title}}</li>
-          <li><strong>Date: </strong>{{eventuserrel.event.start_date|date}}</li>
-          <li><strong>Total Cost: </strong>${{eventuserrel.event.total_price}}</li>
-          <li><strong>Amount You Paid: </strong>${{eventuserrel.amount_paid}}</li>
-          <li><strong>Amount You Owe: </strong>${{ eventuserrel.event.total_price|sub:eventuserrel.amount_paid }}</li>
-          <a href="{% url 'pay_for_event' eventuserrel.id %}" class="btn btn-system">Pay Down That Debt!</a>
+          <li><strong>Name: </strong>{{event.title}}</li>
+          <li><strong>Date: </strong>{{event.start_date|date}}</li>
+          <li><strong>Total Cost: </strong>${{event.total_price}}</li>
         </ul>
       </div>
       <!-- End Profile Content -->

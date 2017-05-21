@@ -1,4 +1,4 @@
-{% extends "texasfyre/base.html" %}
+{% extends "fyrpresents/base.html" %}
 {% load i18n %}
 {% load static %}
 {% block title %}{% trans "Your Profile" %}{% endblock title %}
@@ -28,30 +28,35 @@
 </div>
 <!-- End Page Banner -->
 
-{% if request.user.profile.account_verified %}
 <!-- Start Content -->
 <div id="content">
   <div class="container">
     <div class="project-page row">
       <!-- Start Single Project Slider -->
       <div class="project-media col-md-8">
-        <div class="touch-slider project-slider">
-          <div class="item">
-            <a class="lightbox" title="No one likes you" href="{% static 'images/portfolio-1/1.jpg' %}" data-lightbox-gallery="gallery2">
+        <div class="touch-slider project-slider" style="height:400px">
+          <div class="item" style="background-color:gray">
+            <a class="lightbox" title="No one likes you" href="/static_files/events/images/raver-paradise-2017/raver-paradise1-2017.jpg" data-lightbox-gallery="gallery2">
               <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
-              <div class="fbpicture1"><img src="{% static 'images/portfolio-1/1.jpg' %}"></div>
+              <div class="crop" style="display:block;margin:auto">
+                <img src="/static_files/events/images/raver-paradise-2017/raver-paradise1-2017.jpg" >
+              </div>
             </a>
           </div>
-          <div class="item">
-            <a class="lightbox" title="Stuff Eventually" href="{% static 'images/portfolio-1/4.jpg' %}" data-lightbox-gallery="gallery2">
+          <div class="item" style="background-color:gray">
+            <a class="lightbox" title="Stuff Eventually" href="/static_files/events/images/raver-paradise-2017/raver-paradise2-2017.jpg" data-lightbox-gallery="gallery2">
               <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
-              <div class="fbpicture2"><img src="{% static 'images/portfolio-1/4.jpg' %}"></div>
+              <div class="crop" style="display:block;margin:auto">
+                <img src="/static_files/events/images/raver-paradise-2017/raver-paradise2-2017.jpg" >
+              </div>
             </a>
           </div>
-          <div class="item">
-            <a class="lightbox" title="So much stuff" href="{% static 'images/portfolio-1/12.jpg' %}" data-lightbox-gallery="gallery2">
+          <div class="item" style="background-color:gray">
+            <a class="lightbox" title="So much stuff" href="/static_files/events/images/raver-paradise-2017/raver-paradise3-2017.jpg" data-lightbox-gallery="gallery2">
               <div class="thumb-overlay"><i class="fa fa-arrows-alt"></i></div>
-              <div class="fbpicture3"><img src="{% static 'images/portfolio-1/12.jpg' %}"></div>
+              <div class="crop" style="display:block;margin:auto">
+                <img src="/static_files/events/images/raver-paradise-2017/raver-paradise3-2017.jpg" >
+              </div>
             </a>
           </div>
         </div>
@@ -66,7 +71,7 @@
         <h4><span>About Yourself</span></h4>
         <ul>
           <li><strong>Name:</strong> {{ request.user.first_name}} {{ request.user.last_name}}</li>
-          <li><strong>Home Town:</strong> {{ request.user.profile.home_town}}</li>
+          <!--<li><strong>Home Town:</strong> {{ request.user.profile.home_town}}</li>-->
         </ul>
         <h4><span>Best Travel Buddies</span></h4>
         <div class="row" style="margin-bottom:20px">
@@ -76,20 +81,20 @@
         </div>
       </div>
       <!-- End Profile Content -->
-
     </div>
 
     <!-- Start Recent Projects Carousel -->
-    <div class="recent-projects">
+    <div class="recent-projects" style="padding-top:100px">
       <h4 class="title"><span>You signed up for this</span></h4>
       <div class="projects-carousel touch-carousel">
-        {% for eventuserrel in object_list %}
-        {% if not eventuserrel.event.in_the_past %}
+        {% for event in object_list %}
+        {% if not event.profile.in_the_past %}
             <div class="portfolio-item item">
             <div class="portfolio-border">
               <div class="portfolio-thumb" style="height:200px">
-                {% with 'events/images/'|add:eventuserrel.event.slug|add:'.jpg' as image_static %}
-                <a href="{% url 'user_event_details' eventuserrel.id %}">
+                {% with 'events/images/'|add:event.profile.slug|add:'.jpg' as image_static %}
+                <!--<a href="{% url 'user_event_details' event.profile.slug %}"> -->
+                <a href="{% url 'eventdetails' event.profile.slug %}">
                 <!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
                   <div class="thumb-overlay"></div>
                   <img src="{% static image_static %}" alt="" />
@@ -98,8 +103,8 @@
               </div>
               <div class="portfolio-details">
                 <a href="#">
-                  <h4>{{eventuserrel.event.title}}</h4>
-                  <span>{{eventuserrel.event.start_date|date}}</span>
+                  <h4>{{event.title}}</h4>
+                  <span>{{event.start|date}}</span>
                 </a>
               </div>
             </div>
@@ -110,16 +115,16 @@
     </div>
     <!-- End Recent Projects Carousel -->
     <!-- Start Recent Projects Carousel -->
-    <div class="recent-projects">
+    <div class="recent-projects" style="padding-top:100px">
       <h4 class="title"><span>Stuff you did</span></h4>
-      <div class="projects-carousel touch-carousel">
-      	{% for eventuserrel in object_list %}
-        {% if eventuserrel.event.in_the_past %}
+      <div class="clients-carousel custom-carousel touch-carousel">
+      	{% for event in object_list %}
+        {% if event.profile.in_the_past %}
         		<div class="portfolio-item item">
             <div class="portfolio-border">
               <div class="portfolio-thumb" style="height:200px">
-              	{% with 'events/images/'|add:eventuserrel.event.slug|add:'.jpg' as image_static %}
-                <a href="{% url 'user_event_details' eventuserrel.id %}">
+              	{% with 'events/images/'|add:event.profile.slug|add:'.jpg' as image_static %}
+                <a href="{% url 'user_event_details' event.profile.slug %}">
                 <!-- <a class="lightbox" data-lightbox-type="ajax" href="https://vimeo.com/78468485"> -->
                   <div class="thumb-overlay"></div>
                   <img src="{% static image_static %}" alt="" />
@@ -128,8 +133,8 @@
               </div>
               <div class="portfolio-details">
                 <a href="#">
-                  <h4>{{eventuserrel.event.title}}</h4>
-                  <span>{{eventuserrel.event.start_date|date}}</span>
+                  <h4>{{event.title}}</h4>
+                  <span>{{event.start|date}}</span>
                 </a>
               </div>
             </div>
@@ -142,6 +147,5 @@
   </div>
 </div>
 <!-- End Content -->
-{% else %} Wait a minutes, you aren't supposed to be here. Stop trying to hack this site. {% endif %} 
 {% endblock %}
 

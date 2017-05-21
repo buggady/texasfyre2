@@ -1,0 +1,44 @@
+{% extends 'fyrpresents/base.html' %}
+{% load i18n %}
+{% load staticfiles %}
+{% load crispy_forms_tags %}
+{% block title %}{% trans "Submit an Event Idea" %}{% endblock title %}
+{% block content %}
+
+<!-- Start Page Banner -->
+<div class="page-banner">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Submit an Event Idea</h2>
+        <p>We will figure it out</p>
+      </div>
+      <div class="col-md-6">
+        <ul class="breadcrumbs">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Events</a></li>
+          <li>Submit Event Idea</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Banner -->
+
+<!-- Start Content -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Classic Heading -->
+        <h4 class="classic-title"><span>We super need more events to attend, I think there are a couple weekends open somewhere in 2017</span></h4>
+        
+        <!-- Start Edit Profile Form -->
+        {% crispy form %}
+        {{ status }}
+        <!-- End Edit Profile Form -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

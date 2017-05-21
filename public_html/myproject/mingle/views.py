@@ -11,8 +11,17 @@ from models import Videos
 from django.contrib.auth.models import User
 from urlparse import urlparse, parse_qs
 
-from allauth.account.decorators import verified_email_required
+from django.contrib.auth.decorators import user_passes_test
+from django.utils.decorators import method_decorator
 
+def group_required(*group_names):
+    """Requires user membership in at least one of the groups passed in."""
+    def in_groups(u):
+        if u.is_authenticated():
+            if bool(u.groups.filter(name__in=group_names)) | u.is_superuser:
+                return True
+        return False
+    return user_passes_test(in_groups)
 
 class AjaxTemplateMixin(object):
  
@@ -36,6 +45,10 @@ class VideosView(generic.ListView):
     def post(self, request, *args, **kwargs):
 
         return VideosView.as_view()
+
+    @method_decorator(group_required('Developer'))
+    def dispatch(self, *args, **kwargs):
+        return super(VideosView, self).dispatch(*args, **kwargs)
 
 mingle = VideosView.as_view()
 
@@ -66,7 +79,12 @@ class SubmitVideoView(AjaxTemplateMixin, FormView):
         user = self.request.user
         new_video = Videos(category=category, watch_url=watch_url, video_id=video_id, uploader=user)
         new_video.save()
-        return super(SubmitVideoView, self).form_valid(form)       
+        return super(SubmitVideoView, self).form_valid(form)   
+
+    #@method_decorator(permission_required('users.fyr_developer', login_url='/home'))
+    @method_decorator(group_required('Developer'))
+    def dispatch(self, *args, **kwargs):
+        return super(SubmitVideoView, self).dispatch(*args, **kwargs)    
 
 submit = SubmitVideoView.as_view()
 

@@ -1,0 +1,23 @@
+{% extends 'schedule/base.html' %}
+{% load i18n staticfiles scheduletags %}
+{% load static %}
+
+{% block head_title %}Calendar: {{ object.name }}{% endblock %}
+{% block tab_id %}id='home_tab'{% endblock %}
+{% block more_head %}
+    {% include "fullcalendar_script.html" %}
+{% endblock %}
+
+{% block body %}
+	{% if perms.UserProfile.fyr_developer %}
+    <a class="btn btn-system" href="{% url 'calendar_create_event' calendar_slug %}">
+        <span class='glyphicon glyphicon-plus'></span>
+        {% trans "Add New Event" %}
+    </a>
+    {% endif %}
+    <br>
+    <br>
+    <div id='calendar'></div>
+
+    {% include "fullcalendar_modal.html" %}
+{% endblock %}

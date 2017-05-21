@@ -1,0 +1,77 @@
+{% extends 'fyrpresents/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "Home" %}{% endblock title %}
+{% block content %}
+{% load static %}
+
+<div id="messages" style="display: none;">
+{% if messages %}
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+{% endif %}
+</div>
+
+<!-- Main Slider Section -->
+<section id="slider">
+  <div class="tp-banner-container">
+    <div class="tp-banner">
+      <ul>
+        <li data-transition="zoomout" data-slotamount="7" data-easein="default" data-easeout="default" data-masterspeed="300" data-thumb="{% static 'images/slider/bg4.jpg' %}" data-rotate="0" data-saveperformance="off" data-title="Slide" data-description="on">
+          <!-- MAIN IMAGE -->
+          <img src="{% static 'images/FyrHome.jpg' %}" alt="laptopmockup_sliderdy" data-lazyload="{% static 'images/FyrHome.jpg' %}">
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- Main Slider Section End-->
+
+<!-- Start Services Section -->
+<div class="section service">
+  <div class="container">
+    <div class="row">
+
+      <!-- Start Service Icon 1 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="01">
+        <div class="service-icon">
+          <i class="fa fa-leaf icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Stuff Eventually</h4>
+          <p>I wonder if stuff will ever actually be here or if I am just lying. Yep, turns out I am just lying.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 1 -->
+
+      <!-- Start Service Icon 2 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="02">
+        <div class="service-icon">
+          <i class="fa fa-desktop icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Seriously it is coming</h4>
+          <p>I'm not really that serious about putting content here. Maybe some quotes from It's Always Sunny.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 2 -->
+
+      <!-- Start Service Icon 3 -->
+      <div class="col-md-4 service-box service-center" data-animation="fadeIn" data-animation-delay="03">
+        <div class="service-icon">
+          <i class="fa fa-eye icon-large"></i>
+        </div>
+        <div class="service-content">
+          <h4>Maybe just some cat pictures</h4>
+          <p>I have tons of cat pictures I can share with you. Ok, I'm lying, Angel already shares tons of cat pictures with you.</p>
+        </div>
+      </div>
+      <!-- End Service Icon 3 -->
+    </div>
+    <!-- .row -->
+  </div>
+  <!-- .container -->
+</div>
+<!-- End Services Section -->
+
+{% endblock %}

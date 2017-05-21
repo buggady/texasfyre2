@@ -1,0 +1,84 @@
+{% extends "fyrpresents/base.html" %}
+{% load i18n %}
+{% load staticfiles %}
+{% block extra_head %} 
+  <title>{% block title %}{% endblock title %}{% block title-page %}{% endblock title-page %} - Writings by FYR</title>
+  <meta name="robots" content="follow, all" />
+  <meta name="keywords" content="{% block meta-keywords %}django, blog, weblog, zinnia{% endblock meta-keywords %}" />
+  {% block meta %}{% endblock meta %}
+  <link rel="pingback" href="/xmlrpc/" />
+  <link rel="home" href="{% url 'zinnia:entry_archive_index' %}" />
+  <link rel="stylesheet" type="text/css" media="screen, projection" href="{% static 'zinnia/theme/css/screen.css' %}" />
+  <link rel="stylesheet" type="text/css" media="print" href="{% static 'zinnia/theme/css/print.css' %}" />
+  {% block link %}{% endblock link %}
+  {% block script %}{% endblock script %}
+{% endblock %}
+{% block content %}
+<body class="zinnia {% block theme-class %}default{% endblock theme-class %} {% block color-class %}blue{% endblock color-class %} {% block sidebar-class %}right-sidebar{% endblock sidebar-class %} {% block body-class %}{% endblock body-class %}">
+  <div class="container">
+    <div id="content">
+      <div class="container">
+        <header id="header" role="banner">
+          <nav>
+            <ul class="top-navigation">
+              <li>
+                <a href="{% url 'zinnia:sitemap' %}" title="{% trans 'Sitemap' %}" class="sitemap" rel="sitemap">
+                  {% trans "Sitemap" %}
+                </a>
+              </li>
+              <li>
+                <a href="{% url 'zinnia:entry_feed' %}" title="{% trans 'RSS feed of last entries' %}" class="feeds">
+                {% trans "RSS feed" %}
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <form method="get" action="{% url 'zinnia:entry_search' %}">
+            <p>
+              <input type="text" name="pattern" placeholder="{% trans 'Keywords...' %}" {% if pattern %}value="{{ pattern }}"{% endif %} />
+              <input type="submit" class="submitbutton" value="OK" />
+            </p>
+          </form>
+          <h1>
+            <a href="{% url 'zinnia:entry_archive_index' %}" title="Zinnia's Weblog" rel="home">
+              Writings by FYR
+            </a>
+          </h1>
+          <blockquote>
+            <p>{% trans "Just another Writing by FYR." %}</p>
+          </blockquote>
+          {% block breadcrumbs %}{% endblock breadcrumbs %}
+        </header>
+        {% block slider %}{% endblock slider %}
+        <div id="content" class="hfeed" role="main">
+          {% block subcontent %}
+            <div class="links">
+              <h2>{% trans "Useful links" %}</h2>
+              <ul>
+                <li>
+                  <a href="{% url 'zinnia:entry_archive_index' %}" title="{% trans "Weblog index" %}">
+                    {% trans "Weblog index" %}
+                  </a>
+                </li>
+                <li>
+                  <a href="{% url 'zinnia:sitemap' %}" title="{% trans "Sitemap" %}">
+                    {% trans "Sitemap" %}
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="search">
+              <h2>{% trans "Search" %}</h2>
+              {% include "zinnia/tags/search_form.html" %}
+            </div>
+          {% endblock subcontent %}
+        </div>
+        <div id="sidebar" role="complementary">
+          {% block sidebar %}
+          {% endblock sidebar %}
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+{% endblock %}

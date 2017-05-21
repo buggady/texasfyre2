@@ -1,4 +1,4 @@
-{% extends 'texasfyre/base.html' %}
+{% extends 'fyrpresents/base.html' %}
 {% load i18n %}
 {% load static %}
 {% load vote %}
@@ -27,16 +27,15 @@
 </div>
 <!-- End Page Banner -->
 
-{% if request.user.profile.account_verified %}
 <!-- Start Content -->
 <div id="content">
   <div class="container">
     <div class="page-content">
     <a id="submit_video" class="btn btn-system">Give Us Something</a>
       <h4 class="classic-title"><span>Let's show off some videos a bit</span></h4>
+      <p>For so long, videos and music is shared on facebook and lost by because we can't always monitoring all social media at the same time. This is a space to mingle and compile some amazing songs that would otherwise go overlooked. There is a lot of work still to be done on this page, but for now some features are available to you.</p>
       <!-- Accordion -->
-      
-      <div class="panel-group" id="accordion">
+        <div class="panel-group" id="accordion">
         <!-- Start Accordion 1 -->
         <div class="panel panel-default">
           <!-- Toggle Heading -->
@@ -79,7 +78,6 @@
     </div>
   </div>
 </div>
-{% else %} Go away, this page isn't ready {% endif %} 
 {% endblock %}
 {% block javascript %}
 <script>

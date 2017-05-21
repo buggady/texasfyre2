@@ -5,7 +5,7 @@ from django.contrib.auth.views import logout
 from oscar.app import application
 
 urlpatterns = [
-	url(r'^', include('texasfyre.urls')),
+	url(r'^', include('fyrpresents.urls')),
 	url(r'^events/', include('events.urls')),
 	url(r'^user/', include('users.urls')),
 	url(r'^mingle/', include('mingle.urls')),
@@ -14,6 +14,9 @@ urlpatterns = [
 	url(r'^accounts/', include('allauth.urls')),
 	url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 	url(r'^newsletter/', include('newsletter.urls')),
+	url(r'^calendar/', include('schedule.urls')),
+	url(r'^weblog/', include('zinnia.urls', namespace="zinnia")),
+	url(r'^comments/', include('django_comments.urls')),
 	url(r'^i18n/', include('django.conf.urls.i18n')),
 	url(r'^admin_tools/', include('admin_tools.urls')),
 	url(r'^admin/', admin.site.urls),
